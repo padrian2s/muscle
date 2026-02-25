@@ -9596,9 +9596,8 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.1 });
 
-  // Select elements to animate on scroll
+  // Select elements to animate on scroll (NOT .section — they're too tall for threshold)
   const selectors = [
-    '.section',
     '.card',
     '.chart-container',
     '.issue-card',
