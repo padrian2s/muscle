@@ -1,0 +1,215 @@
+<!-- CHUNK 3: EXPLORER + SIMULATOR -->
+
+<style>
+  .explorer-summary {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+  .summary-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .overall-score {
+    margin-top: 32px;
+    text-align: center;
+    padding: 24px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+  }
+  .score-number {
+    font-size: 4rem;
+    font-weight: 800;
+  }
+  .score-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+  .score-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s;
+  }
+  .score-verdict {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .score-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+    .nav-links.mobile-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      padding: 16px;
+      gap: 8px;
+    }
+  }
+</style>
+
+<!-- ==================== MUSCLE EXPLORER ==================== -->
+<section class="section" id="explorer">
+  <h2 class="section-title">Explorator Muscular</h2>
+  <p class="section-subtitle">Cauta si filtreaza toti muschii din organism. Afla functia, rata de atrofie si cum ii poti proteja.</p>
+
+  <div class="explorer-controls">
+    <input type="text" class="search-input" id="muscleSearch" placeholder="&#128269; Cauta un muschi..." oninput="filterMuscles()">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Toti</button>
+      <button class="filter-btn" data-filter="head" onclick="setFilter('head')">Cap &amp; Gat</button>
+      <button class="filter-btn" data-filter="shoulder" onclick="setFilter('shoulder')">Umeri</button>
+      <button class="filter-btn" data-filter="arm" onclick="setFilter('arm')">Brate</button>
+      <button class="filter-btn" data-filter="chest" onclick="setFilter('chest')">Piept</button>
+      <button class="filter-btn" data-filter="back" onclick="setFilter('back')">Spate</button>
+      <button class="filter-btn" data-filter="core" onclick="setFilter('core')">Abdomen</button>
+      <button class="filter-btn" data-filter="hip" onclick="setFilter('hip')">Sold</button>
+      <button class="filter-btn" data-filter="thigh" onclick="setFilter('thigh')">Coapse</button>
+      <button class="filter-btn" data-filter="leg" onclick="setFilter('leg')">Gambe</button>
+      <button class="filter-btn" data-filter="foot" onclick="setFilter('foot')">Picioare</button>
+      <button class="filter-btn" data-filter="respiratory" onclick="setFilter('respiratory')">Respiratori</button>
+      <button class="filter-btn" data-filter="pelvic" onclick="setFilter('pelvic')">Pelvis</button>
+    </div>
+  </div>
+
+  <!-- Summary stats bar -->
+  <div class="explorer-summary" id="explorerSummary">
+    <span class="summary-item"><strong id="totalShown">0</strong> muschi afisati</span>
+    <span class="summary-item">&#128308; <strong id="countRapid">0</strong> atrofie rapida</span>
+    <span class="summary-item">&#128992; <strong id="countModerate">0</strong> moderata</span>
+    <span class="summary-item">&#128993; <strong id="countSlow">0</strong> lenta</span>
+    <span class="summary-item">&#128994; <strong id="countVerySlow">0</strong> foarte lenta</span>
+  </div>
+
+  <div class="muscle-grid" id="muscleGrid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- ==================== LIFESTYLE SIMULATOR ==================== -->
+<section class="section" id="simulator">
+  <h2 class="section-title">Simulator Stil de Viata</h2>
+  <p class="section-subtitle">Ajusteaza parametrii si vezi in timp real cum afecteaza diferite activitati sanatatea musculara.</p>
+
+  <!-- Preset scenario buttons -->
+  <div class="scenario-cards">
+    <div class="scenario-card active" data-scenario="desk" onclick="loadScenario('desk')">
+      <div class="scenario-icon">&#128421;&#65039;</div>
+      <div class="scenario-name">Doar Birou</div>
+      <div class="scenario-desc">8h sezut, fara exercitii</div>
+    </div>
+    <div class="scenario-card" data-scenario="walker" onclick="loadScenario('walker')">
+      <div class="scenario-icon">&#128694;</div>
+      <div class="scenario-name">Mers Zilnic</div>
+      <div class="scenario-desc">8h birou + 30min mers</div>
+    </div>
+    <div class="scenario-card" data-scenario="cyclist" onclick="loadScenario('cyclist')">
+      <div class="scenario-icon">&#128692;</div>
+      <div class="scenario-name">Bicicleta Zilnica</div>
+      <div class="scenario-desc">8h birou + 30min ciclism</div>
+    </div>
+    <div class="scenario-card" data-scenario="active" onclick="loadScenario('active')">
+      <div class="scenario-icon">&#128170;</div>
+      <div class="scenario-name">Activ Complet</div>
+      <div class="scenario-desc">Mers + Bicicleta + Exercitii</div>
+    </div>
+  </div>
+
+  <div class="simulator-panel">
+    <!-- Left: Controls -->
+    <div class="controls-panel">
+      <h3 style="margin-bottom:24px;font-weight:700;">&#9881;&#65039; Parametri</h3>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Ore sezut pe zi</span>
+          <span class="slider-value" id="sittingValue">8</span>
+        </div>
+        <input type="range" min="0" max="16" step="0.5" value="8" id="sittingSlider" oninput="updateSimulator()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Minute mers pe zi</span>
+          <span class="slider-value" id="walkingValue">0</span>
+        </div>
+        <input type="range" min="0" max="120" step="5" value="0" id="walkingSlider" oninput="updateSimulator()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Minute bicicleta pe zi</span>
+          <span class="slider-value" id="cyclingValue">0</span>
+        </div>
+        <input type="range" min="0" max="120" step="5" value="0" id="cyclingSlider" oninput="updateSimulator()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Exercitii forta (zile/saptamana)</span>
+          <span class="slider-value" id="strengthValue">0</span>
+        </div>
+        <input type="range" min="0" max="7" step="1" value="0" id="strengthSlider" oninput="updateSimulator()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Saptamani simulate</span>
+          <span class="slider-value" id="weeksValue">12</span>
+        </div>
+        <input type="range" min="1" max="52" step="1" value="12" id="weeksSlider" oninput="updateSimulator()">
+      </div>
+
+      <!-- Overall score display -->
+      <div class="overall-score" id="overallScore">
+        <div class="score-label">Scor General Sanatate Musculara</div>
+        <div class="score-number" id="scoreNumber">45</div>
+        <div class="score-bar">
+          <div class="score-fill" id="scoreFill" style="width:45%"></div>
+        </div>
+        <div class="score-verdict" id="scoreVerdict">Risc Ridicat</div>
+      </div>
+    </div>
+
+    <!-- Right: Results -->
+    <div class="results-panel">
+      <h3 style="margin-bottom:24px;font-weight:700;">&#128202; Sanatate pe Grupe Musculare</h3>
+      <div class="health-bars" id="healthBars">
+        <!-- Generated by JS: one health bar per muscle group -->
+      </div>
+
+      <h3 style="margin:32px 0 16px;font-weight:700;">&#128200; Progresie in Timp</h3>
+      <div class="timeline-chart" id="timelineChart">
+        <!-- SVG timeline chart generated by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END CHUNK 3 -->

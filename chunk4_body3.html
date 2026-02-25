@@ -1,0 +1,639 @@
+<!-- CHUNK 4: DASHBOARD + POSTURE + RECOVERY + FOOTER -->
+
+<!-- Extra CSS for Chunk 4 -->
+<style>
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .comparison-card {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .comparison-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .comparison-card.desk::before {
+    background: var(--risk-rapid);
+  }
+
+  .comparison-card.walking::before {
+    background: var(--risk-very-slow);
+  }
+
+  .comparison-card.cycling::before {
+    background: var(--activity-cycling);
+  }
+
+  .comparison-card.combined::before {
+    background: var(--activity-combined);
+  }
+
+  .comparison-icon {
+    font-size: 2.5rem;
+  }
+
+  .comparison-score {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 12px 0;
+  }
+
+  .comparison-list {
+    list-style: none;
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 2;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .heatmap-header {
+    display: grid;
+    grid-template-columns: 140px repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .heatmap-col-label {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .heatmap-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .heatmap-scale {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .scale-gradient {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #1a1b25, #e74c3c);
+  }
+
+  .severity-indicator {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+  }
+
+  .severity-indicator.high {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--risk-rapid);
+  }
+
+  .severity-indicator.medium {
+    background: rgba(230, 126, 34, 0.15);
+    color: var(--risk-moderate);
+  }
+
+  .issue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .issue-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .issue-muscles {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .issue-exercises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .exercise-tag {
+    background: var(--bg-secondary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .recovery-selector {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    margin-bottom: 32px;
+  }
+
+  .duration-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .duration-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .duration-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .recovery-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .recovery-stat {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    text-align: center;
+  }
+
+  .recovery-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .recovery-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  .timeline-exercises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .problem-indicator {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @media (max-width: 1024px) {
+    .comparison-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recovery-overview {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .posture-container {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<!-- ============================================ -->
+<!-- ACTIVITY COMPARISON DASHBOARD                -->
+<!-- ============================================ -->
+<section class="section" id="dashboard">
+  <h2 class="section-title">Comparatie Activitati</h2>
+  <p class="section-subtitle">Vezi cum diferite activitati activeaza grupele musculare comparativ cu sedentarismul.</p>
+
+  <div class="dashboard-grid">
+    <!-- Radar Chart -->
+    <div class="chart-container">
+      <h3 class="chart-title">Activare Musculara per Activitate</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">Fiecare axa reprezinta un grup muscular major. Aria colorata arata nivelul de activare.</p>
+      <div class="radar-chart" id="radarChart">
+        <!-- SVG radar chart generated by JS -->
+      </div>
+      <div class="chart-legend" id="radarLegend">
+        <span class="legend-item"><span class="legend-dot" style="background:var(--activity-desk)"></span>Birou</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--activity-walking)"></span>Mers</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--activity-cycling)"></span>Bicicleta</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--activity-combined)"></span>Combinat</span>
+      </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="chart-container">
+      <h3 class="chart-title">Harta Termica - Activare Musculara</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">Intensitatea culorii indica nivelul de activare musculara pentru fiecare activitate.</p>
+
+      <!-- Heatmap header -->
+      <div class="heatmap-header">
+        <div class="heatmap-label"></div>
+        <div class="heatmap-col-label">🖥️ Birou</div>
+        <div class="heatmap-col-label">🚶 Mers</div>
+        <div class="heatmap-col-label">🚴 Bicicleta</div>
+        <div class="heatmap-col-label">💪 Combinat</div>
+      </div>
+      <div class="heatmap" id="heatmapChart">
+        <!-- Generated by JS: rows for each muscle group, 4 cells each -->
+      </div>
+
+      <div class="heatmap-scale">
+        <span>0% Inactiv</span>
+        <div class="scale-gradient"></div>
+        <span>100% Activ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity comparison cards -->
+  <h3 style="margin-top:48px;margin-bottom:24px;font-weight:700;font-size:1.3rem;">Rezumat Comparativ</h3>
+  <div class="comparison-grid">
+    <div class="comparison-card desk">
+      <div class="comparison-icon">🖥️</div>
+      <h4>Doar Birou</h4>
+      <div class="comparison-score" id="deskScore">32</div>
+      <ul class="comparison-list">
+        <li>&#10060; Atrofie rapida la cvadricepsi</li>
+        <li>&#10060; Fesieri dezactivati complet</li>
+        <li>&#10060; Spate inferior suprasolicitat static</li>
+        <li>&#10060; Flexori sold scurtati</li>
+        <li>&#9888;️ Risc dureri cronice in 6 luni</li>
+      </ul>
+    </div>
+    <div class="comparison-card walking">
+      <div class="comparison-icon">🚶</div>
+      <h4>Mers 30min/zi</h4>
+      <div class="comparison-score" id="walkScore">58</div>
+      <ul class="comparison-list">
+        <li>&#9989; Mentine gambe si cvadricepsi</li>
+        <li>&#9989; Activeaza fesierii moderat</li>
+        <li>&#9888;️ Partea superioara neactivata</li>
+        <li>&#9989; Imbunatateste postura</li>
+        <li>&#9989; Reduce riscul dureri spate</li>
+      </ul>
+    </div>
+    <div class="comparison-card cycling">
+      <div class="comparison-icon">🚴</div>
+      <h4>Bicicleta 30min/zi</h4>
+      <div class="comparison-score" id="cycleScore">62</div>
+      <ul class="comparison-list">
+        <li>&#9989; Cvadricepsi foarte activi</li>
+        <li>&#9989; Ischiogambieri bine activati</li>
+        <li>&#9989; Gamba puternic activata</li>
+        <li>&#9888;️ Core partial activat</li>
+        <li>&#9888;️ Brate si spate superior slabe</li>
+      </ul>
+    </div>
+    <div class="comparison-card combined">
+      <div class="comparison-icon">💪</div>
+      <h4>Activ Complet</h4>
+      <div class="comparison-score" id="combinedScore">87</div>
+      <ul class="comparison-list">
+        <li>&#9989; Toate grupele activate</li>
+        <li>&#9989; Postura corecta mentinuta</li>
+        <li>&#9989; Risc minim atrofie</li>
+        <li>&#9989; Echilibru muscular optim</li>
+        <li>&#9989; Energia si starea crescute</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- POSTURE ANALYSIS SECTION                     -->
+<!-- ============================================ -->
+<section class="section" id="posture">
+  <h2 class="section-title">Analiza Posturala</h2>
+  <p class="section-subtitle">Problemele tipice ale unui angajat de birou si muschii afectati.</p>
+
+  <div class="posture-container">
+    <!-- Posture diagram - SVG showing side view of desk worker -->
+    <div class="posture-diagram">
+      <h3 style="margin-bottom:16px;font-weight:600;">Postura la Birou - Probleme Comune</h3>
+      <svg viewBox="0 0 500 600" id="postureSvg" style="width:100%;max-width:500px;">
+        <!-- Side view of person sitting at desk -->
+        <!-- Desk -->
+        <rect x="250" y="300" width="200" height="10" rx="3" fill="#333" />
+        <rect x="250" y="310" width="10" height="150" fill="#333" />
+        <rect x="440" y="310" width="10" height="150" fill="#333" />
+        <!-- Chair -->
+        <rect x="100" y="310" width="120" height="10" rx="3" fill="#444" />
+        <rect x="90" y="200" width="10" height="120" rx="3" fill="#444" />
+        <rect x="100" y="460" width="10" height="40" fill="#444" />
+        <rect x="210" y="460" width="10" height="40" fill="#444" />
+        <!-- Person sitting (side view silhouette) -->
+        <!-- Head -->
+        <circle cx="180" cy="130" r="30" fill="#555" stroke="#666" stroke-width="1"/>
+        <!-- Neck (forward) -->
+        <line x1="180" y1="160" x2="170" y2="190" stroke="#555" stroke-width="14" stroke-linecap="round"/>
+        <!-- Torso (slouched) -->
+        <path d="M170,190 C160,220 140,270 130,320" stroke="#555" stroke-width="20" fill="none" stroke-linecap="round"/>
+        <!-- Upper arm -->
+        <line x1="165" y1="210" x2="200" y2="280" stroke="#555" stroke-width="12" stroke-linecap="round"/>
+        <!-- Forearm on desk -->
+        <line x1="200" y1="280" x2="280" y2="295" stroke="#555" stroke-width="10" stroke-linecap="round"/>
+        <!-- Thigh -->
+        <line x1="130" y1="320" x2="220" y2="315" stroke="#555" stroke-width="16" stroke-linecap="round"/>
+        <!-- Lower leg -->
+        <line x1="220" y1="315" x2="210" y2="460" stroke="#555" stroke-width="14" stroke-linecap="round"/>
+        <!-- Foot -->
+        <line x1="210" y1="460" x2="250" y2="470" stroke="#555" stroke-width="10" stroke-linecap="round"/>
+
+        <!-- Problem indicators (red circles with lines) -->
+        <!-- 1. Forward head -->
+        <circle cx="180" cy="130" r="35" fill="none" stroke="var(--risk-rapid)" stroke-width="2" stroke-dasharray="5,5" class="problem-indicator" data-problem="head"/>
+        <line x1="215" y1="120" x2="300" y2="80" stroke="var(--risk-rapid)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="305" y="85" fill="var(--risk-rapid)" font-size="11" font-weight="600">Cap inclinat inainte</text>
+
+        <!-- 2. Rounded shoulders -->
+        <circle cx="165" cy="210" r="25" fill="none" stroke="var(--risk-moderate)" stroke-width="2" stroke-dasharray="5,5" class="problem-indicator" data-problem="shoulders"/>
+        <line x1="145" y1="200" x2="40" y2="170" stroke="var(--risk-moderate)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="0" y="165" fill="var(--risk-moderate)" font-size="11" font-weight="600">Umeri rotunjiti</text>
+
+        <!-- 3. Curved spine -->
+        <ellipse cx="150" cy="270" rx="20" ry="40" fill="none" stroke="var(--risk-rapid)" stroke-width="2" stroke-dasharray="5,5" class="problem-indicator" data-problem="spine"/>
+        <line x1="130" y1="270" x2="30" y2="270" stroke="var(--risk-rapid)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="0" y="275" fill="var(--risk-rapid)" font-size="11" font-weight="600">Coloana curbata</text>
+
+        <!-- 4. Hip flexors shortened -->
+        <circle cx="175" cy="320" r="20" fill="none" stroke="var(--risk-moderate)" stroke-width="2" stroke-dasharray="5,5" class="problem-indicator" data-problem="hips"/>
+        <line x1="175" y1="340" x2="50" y2="380" stroke="var(--risk-moderate)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="0" y="385" fill="var(--risk-moderate)" font-size="11" font-weight="600">Flexori scurtati</text>
+
+        <!-- 5. Inactive glutes -->
+        <circle cx="120" cy="340" r="20" fill="none" stroke="var(--risk-rapid)" stroke-width="2" stroke-dasharray="5,5" class="problem-indicator" data-problem="glutes"/>
+        <line x1="100" y1="345" x2="30" y2="420" stroke="var(--risk-rapid)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="0" y="430" fill="var(--risk-rapid)" font-size="11" font-weight="600">Fesieri inactivi</text>
+      </svg>
+    </div>
+
+    <!-- Posture issues list -->
+    <div class="posture-issues">
+      <div class="issue-card" data-problem="head">
+        <div class="issue-header">
+          <h4>🔴 Sindromul Capului Inainte</h4>
+          <span class="severity-indicator high">Severitate: Inalta</span>
+        </div>
+        <p class="issue-desc">Capul se deplaseaza 2-3cm inainte de linia umerilor. Fiecare cm adauga ~4.5kg presiune pe gat.</p>
+        <div class="issue-muscles">
+          <strong>Muschi afectati:</strong> Sternocleidomastoid (scurtat), Scaleni (scurtati), Splenius capitis (alungit), Trapez superior (suprasolicitat)
+        </div>
+        <div class="issue-exercises">
+          <strong>Exercitii recomandate:</strong>
+          <span class="exercise-tag">Chin Tucks</span>
+          <span class="exercise-tag">Extensii cervicale</span>
+          <span class="exercise-tag">Stretching trapez</span>
+        </div>
+      </div>
+
+      <div class="issue-card" data-problem="shoulders">
+        <div class="issue-header">
+          <h4>🟠 Umeri Rotunjiti</h4>
+          <span class="severity-indicator medium">Severitate: Medie</span>
+        </div>
+        <p class="issue-desc">Pectoralii se scurteaza, tragand umerii inainte. Muschii spatelui superior se alungesc si slabesc.</p>
+        <div class="issue-muscles">
+          <strong>Muschi afectati:</strong> Pectorali (scurtati), Romboizi (alungiti/slabi), Serratus anterior (slab), Deltoid posterior (slab)
+        </div>
+        <div class="issue-exercises">
+          <strong>Exercitii recomandate:</strong>
+          <span class="exercise-tag">Face Pulls</span>
+          <span class="exercise-tag">Band Pull-Aparts</span>
+          <span class="exercise-tag">Stretching pectoral</span>
+        </div>
+      </div>
+
+      <div class="issue-card" data-problem="spine">
+        <div class="issue-header">
+          <h4>🔴 Cifoza Toracica / Spate Rotund</h4>
+          <span class="severity-indicator high">Severitate: Inalta</span>
+        </div>
+        <p class="issue-desc">Coloana toracica se curbeaza excesiv. Discurile intervertebrale sunt comprimate anterior, crescand riscul de hernie.</p>
+        <div class="issue-muscles">
+          <strong>Muschi afectati:</strong> Erectori spinali (slabi), Multifidus (atrofiat), Abdominali (slabi), Latissimus dorsi (inactiv)
+        </div>
+        <div class="issue-exercises">
+          <strong>Exercitii recomandate:</strong>
+          <span class="exercise-tag">Cat-Cow</span>
+          <span class="exercise-tag">Superman</span>
+          <span class="exercise-tag">Thoracic Extensions</span>
+          <span class="exercise-tag">Plansa</span>
+        </div>
+      </div>
+
+      <div class="issue-card" data-problem="hips">
+        <div class="issue-header">
+          <h4>🟠 Flexori Sold Scurtati</h4>
+          <span class="severity-indicator medium">Severitate: Medie</span>
+        </div>
+        <p class="issue-desc">Statul prelungit scurteaza psoas-ul si iliacus-ul, provocand basculare anterioara a pelvisului si dureri lombare.</p>
+        <div class="issue-muscles">
+          <strong>Muschi afectati:</strong> Psoas major (scurtat), Iliacus (scurtat), Rectus femoris (scurtat), Fesieri (inhibati reciproc)
+        </div>
+        <div class="issue-exercises">
+          <strong>Exercitii recomandate:</strong>
+          <span class="exercise-tag">Hip Flexor Stretch</span>
+          <span class="exercise-tag">Fandari</span>
+          <span class="exercise-tag">Glute Bridges</span>
+        </div>
+      </div>
+
+      <div class="issue-card" data-problem="glutes">
+        <div class="issue-header">
+          <h4>🔴 Amnezia Fesierilor</h4>
+          <span class="severity-indicator high">Severitate: Inalta</span>
+        </div>
+        <p class="issue-desc">Fesierii "uita" cum sa se contracte eficient. Alte muschi preiau functiile lor, ducand la dezechilibre si dureri.</p>
+        <div class="issue-muscles">
+          <strong>Muschi afectati:</strong> Gluteus maximus (inactiv), Gluteus medius (slab), Piriformis (suprasolicitat compensator), Ischiogambieri (suprasolicitati)
+        </div>
+        <div class="issue-exercises">
+          <strong>Exercitii recomandate:</strong>
+          <span class="exercise-tag">Glute Bridges</span>
+          <span class="exercise-tag">Clamshells</span>
+          <span class="exercise-tag">Hip Thrusts</span>
+          <span class="exercise-tag">Genuflexiuni</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- RECOVERY PLAN SECTION                        -->
+<!-- ============================================ -->
+<section class="section" id="recovery">
+  <h2 class="section-title">Plan de Recuperare</h2>
+  <p class="section-subtitle">Selecteaza cat timp ai fost sedentar si primesti un plan personalizat de recuperare.</p>
+
+  <!-- Atrophy duration selector -->
+  <div class="recovery-selector">
+    <h3 style="margin-bottom:16px;font-weight:600;">Cat timp ai fost predominant sedentar?</h3>
+    <div class="duration-options">
+      <button class="duration-btn active" data-weeks="4" onclick="selectDuration(4)">1 luna</button>
+      <button class="duration-btn" data-weeks="12" onclick="selectDuration(12)">3 luni</button>
+      <button class="duration-btn" data-weeks="26" onclick="selectDuration(26)">6 luni</button>
+      <button class="duration-btn" data-weeks="52" onclick="selectDuration(52)">1 an</button>
+      <button class="duration-btn" data-weeks="104" onclick="selectDuration(104)">2+ ani</button>
+    </div>
+  </div>
+
+  <!-- Recovery timeline -->
+  <div class="recovery-content" id="recoveryContent">
+    <div class="recovery-overview">
+      <div class="recovery-stat">
+        <div class="recovery-stat-number" id="recoveryWeeks">4-6</div>
+        <div class="recovery-stat-label">Saptamani pentru recuperare de baza</div>
+      </div>
+      <div class="recovery-stat">
+        <div class="recovery-stat-number" id="recoveryMonths">2-3</div>
+        <div class="recovery-stat-label">Luni pentru recuperare completa</div>
+      </div>
+      <div class="recovery-stat">
+        <div class="recovery-stat-number" id="recoveryFreq">3-4x</div>
+        <div class="recovery-stat-label">Sesiuni recomandate pe saptamana</div>
+      </div>
+    </div>
+
+    <!-- Phases -->
+    <h3 style="margin:32px 0 16px;font-weight:700;">Fazele Recuperarii</h3>
+    <div class="recovery-timeline" id="recoveryTimeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item phase-1">
+        <div class="timeline-dot" style="background:var(--risk-rapid)"></div>
+        <div class="timeline-phase">Faza 1: Reactivare (Sapt. 1-2)</div>
+        <div class="timeline-desc">Focus pe mobilitate si reactivarea muschilor "adormiti". Exercitii usoare, stretching zilnic.</div>
+        <div class="timeline-exercises">
+          <span class="exercise-tag">Stretching 15min/zi</span>
+          <span class="exercise-tag">Plimbari 20-30min</span>
+          <span class="exercise-tag">Glute Bridges 3x10</span>
+          <span class="exercise-tag">Cat-Cow 2x10</span>
+          <span class="exercise-tag">Dead Bug 2x8</span>
+        </div>
+      </div>
+
+      <div class="timeline-item phase-2">
+        <div class="timeline-dot" style="background:var(--risk-moderate)"></div>
+        <div class="timeline-phase">Faza 2: Fundatie (Sapt. 3-6)</div>
+        <div class="timeline-desc">Construirea fortei de baza. Exercitii cu greutatea corpului, intensitate moderata.</div>
+        <div class="timeline-exercises">
+          <span class="exercise-tag">Genuflexiuni 3x12</span>
+          <span class="exercise-tag">Fandari 3x10/picior</span>
+          <span class="exercise-tag">Flotari (modificate) 3x8</span>
+          <span class="exercise-tag">Plansa 3x30s</span>
+          <span class="exercise-tag">Rows cu banda 3x12</span>
+        </div>
+      </div>
+
+      <div class="timeline-item phase-3">
+        <div class="timeline-dot" style="background:var(--risk-slow)"></div>
+        <div class="timeline-phase">Faza 3: Dezvoltare (Sapt. 7-12)</div>
+        <div class="timeline-desc">Cresterea progresiva a intensitatii. Adaugarea greutatilor externe.</div>
+        <div class="timeline-exercises">
+          <span class="exercise-tag">Deadlifts 3x8</span>
+          <span class="exercise-tag">Squat cu greutati 4x8</span>
+          <span class="exercise-tag">Bench Press 3x10</span>
+          <span class="exercise-tag">Rowing 3x10</span>
+          <span class="exercise-tag">Core avansat</span>
+        </div>
+      </div>
+
+      <div class="timeline-item phase-4">
+        <div class="timeline-dot" style="background:var(--risk-very-slow)"></div>
+        <div class="timeline-phase">Faza 4: Mentinere (Sapt. 12+)</div>
+        <div class="timeline-desc">Program complet de fitness. Mentinerea castigurilor prin antrenament regulat.</div>
+        <div class="timeline-exercises">
+          <span class="exercise-tag">Program complet 4x/sapt</span>
+          <span class="exercise-tag">Cardio 3x/sapt</span>
+          <span class="exercise-tag">Stretching zilnic</span>
+          <span class="exercise-tag">Pauze active la birou</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommended exercises grid -->
+    <h3 style="margin:32px 0 16px;font-weight:700;">Exercitii Esentiale per Grup Muscular</h3>
+    <div class="exercise-grid" id="exerciseGrid">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- FOOTER                                       -->
+<!-- ============================================ -->
+<footer class="footer">
+  <p>Atlasul Muscular - Ghid Interactiv de Atrofie Musculara</p>
+  <p style="margin-top:8px;font-size:0.8rem;">Informatiile sunt orientative si bazate pe stiinta exercitiului fizic. Consulta un specialist pentru sfat medical personalizat.</p>
+  <p style="margin-top:8px;font-size:0.75rem;opacity:0.5;">&copy; 2024 | Creat cu scopul de a educa despre importanta miscarii</p>
+</footer>
+
+<!-- END CHUNK 4 -->

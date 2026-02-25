@@ -1,0 +1,2795 @@
+{
+  "metadata": {
+    "title": "Comprehensive Human Muscle Database",
+    "version": "1.0",
+    "total_muscles": 156,
+    "date": "2026-02-25",
+    "notes": "Atrophy rates and strength loss percentages are approximate values based on exercise science literature. Individual variation exists based on age, genetics, nutrition, and baseline fitness.",
+    "sources_basis": "Exercise physiology research, anatomical references, sports medicine literature"
+  },
+  "atrophy_rate_scale": {
+    "rapid": {
+      "label": "Rapid",
+      "timeline": "Noticeable in 2-4 weeks",
+      "description": "Fast-twitch dominant muscles with minimal daily use"
+    },
+    "moderate": {
+      "label": "Moderate",
+      "timeline": "4-8 weeks",
+      "description": "Mixed fiber type muscles with some incidental daily use"
+    },
+    "slow": {
+      "label": "Slow",
+      "timeline": "8-16 weeks",
+      "description": "Slow-twitch dominant or postural muscles with regular low-level activation"
+    },
+    "very_slow": {
+      "label": "Very Slow",
+      "timeline": "16+ weeks",
+      "description": "Muscles with constant involuntary or postural engagement"
+    }
+  },
+  "recovery_difficulty_scale": {
+    "easy": "Responds quickly to training, 2-4 weeks to regain baseline",
+    "moderate": "Requires consistent effort, 4-8 weeks to regain baseline",
+    "hard": "Slow to rebuild, 8-16 weeks, may need targeted isolation work",
+    "very_hard": "Requires specialized rehabilitation, 16+ weeks, often needs professional guidance"
+  },
+  "general_atrophy_timeline_desk_workers": {
+    "week_1_2": {
+      "description": "Neural detraining begins",
+      "details": "Motor unit recruitment efficiency drops. Strength loss is primarily neural, not muscular. Glycogen stores decrease. No visible muscle loss yet.",
+      "strength_loss_cumulative": "3-5%"
+    },
+    "week_2_4": {
+      "description": "Early muscular atrophy begins",
+      "details": "Type II (fast-twitch) fibers begin to shrink. Glutes, spinal erectors, and deep stabilizers start weakening from prolonged sitting. Hip flexors begin to shorten. Upper trapezius may become overactive from desk posture.",
+      "strength_loss_cumulative": "5-12%"
+    },
+    "week_4_8": {
+      "description": "Visible atrophy in key muscles",
+      "details": "Noticeable reduction in muscle tone in glutes, quads, and shoulders. Core stabilizers significantly weakened. Postural imbalances become established. Muscle protein synthesis rate drops substantially.",
+      "strength_loss_cumulative": "12-20%"
+    },
+    "week_8_12": {
+      "description": "Significant deconditioning",
+      "details": "Substantial loss of muscle cross-sectional area (10-15% in major muscles). Tendons and connective tissue begin to weaken. Joint stability compromised. Metabolic rate decreases noticeably.",
+      "strength_loss_cumulative": "20-30%"
+    },
+    "week_12_24": {
+      "description": "Advanced atrophy",
+      "details": "Muscle fiber type conversion begins (Type II to Type I). Significant postural dysfunction. Chronic pain patterns may develop. Bone density starts decreasing. Neuromuscular coordination substantially impaired.",
+      "strength_loss_cumulative": "30-45%"
+    },
+    "week_24_plus": {
+      "description": "Chronic deconditioning",
+      "details": "Muscles adapt to sedentary state. Fat infiltration of muscle tissue (myosteatosis). Severe postural dysfunction. High injury risk with sudden activity. Full recovery requires months of progressive training.",
+      "strength_loss_cumulative": "45-60%"
+    }
+  },
+  "activity_activation_percentages": {
+    "walking_30min": {
+      "description": "30 minutes of moderate-pace walking daily",
+      "overall_muscle_activation": "30-35% of total body musculature",
+      "highly_activated": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Quadriceps",
+        "Hamstrings",
+        "Gastrocnemius",
+        "Soleus",
+        "Tibialis Anterior",
+        "Hip Flexors",
+        "Erector Spinae"
+      ],
+      "moderately_activated": [
+        "Core stabilizers",
+        "Foot intrinsic muscles",
+        "Fibularis muscles",
+        "Hip abductors",
+        "Hip adductors"
+      ],
+      "minimally_activated": [
+        "Upper body muscles",
+        "Chest",
+        "Arms",
+        "Shoulders"
+      ],
+      "calories_per_30min": "100-200",
+      "primary_benefit": "Maintains baseline lower body and postural muscle tone"
+    },
+    "cycling_30min": {
+      "description": "30 minutes of moderate-intensity cycling daily",
+      "overall_muscle_activation": "25-30% of total body musculature",
+      "highly_activated": [
+        "Quadriceps",
+        "Gluteus Maximus",
+        "Hamstrings",
+        "Gastrocnemius",
+        "Soleus",
+        "Hip Flexors"
+      ],
+      "moderately_activated": [
+        "Core stabilizers",
+        "Tibialis Anterior",
+        "Erector Spinae"
+      ],
+      "minimally_activated": [
+        "Upper body",
+        "Foot intrinsic muscles",
+        "Gluteus Medius",
+        "Hip abductors"
+      ],
+      "calories_per_30min": "200-350",
+      "primary_benefit": "Strong quad and glute maintenance with low joint impact"
+    },
+    "running_30min": {
+      "description": "30 minutes of moderate-pace running daily",
+      "overall_muscle_activation": "45-55% of total body musculature",
+      "highly_activated": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Quadriceps",
+        "Hamstrings",
+        "Gastrocnemius",
+        "Soleus",
+        "Tibialis Anterior",
+        "Hip Flexors",
+        "Core stabilizers",
+        "Erector Spinae",
+        "Foot intrinsic muscles"
+      ],
+      "moderately_activated": [
+        "Hip adductors",
+        "Hip abductors",
+        "Fibularis muscles",
+        "Arms (swing)",
+        "Shoulders",
+        "Obliques"
+      ],
+      "minimally_activated": [
+        "Chest",
+        "Lats",
+        "Upper back"
+      ],
+      "calories_per_30min": "250-450",
+      "primary_benefit": "Comprehensive lower body and core maintenance with cardiovascular benefit"
+    },
+    "swimming_30min": {
+      "description": "30 minutes of moderate-pace swimming daily",
+      "overall_muscle_activation": "60-75% of total body musculature",
+      "highly_activated": [
+        "Latissimus Dorsi",
+        "Deltoids",
+        "Rotator Cuff",
+        "Pectorals",
+        "Core stabilizers",
+        "Hip Flexors",
+        "Quadriceps",
+        "Hamstrings",
+        "Gluteals",
+        "Gastrocnemius"
+      ],
+      "moderately_activated": [
+        "Biceps",
+        "Triceps",
+        "Forearm muscles",
+        "Tibialis Anterior",
+        "Erector Spinae",
+        "Trapezius",
+        "Rhomboids"
+      ],
+      "minimally_activated": [
+        "Foot intrinsic muscles",
+        "Hand intrinsic muscles"
+      ],
+      "calories_per_30min": "200-400",
+      "primary_benefit": "Most comprehensive full-body muscle activation with zero impact"
+    }
+  },
+  "desk_worker_postural_impact": {
+    "upper_crossed_syndrome": {
+      "description": "Common postural dysfunction from prolonged sitting at a desk",
+      "tight_overactive_muscles": [
+        "Upper Trapezius",
+        "Levator Scapulae",
+        "Sternocleidomastoid",
+        "Pectoralis Major",
+        "Pectoralis Minor",
+        "Suboccipitals"
+      ],
+      "weak_inhibited_muscles": [
+        "Deep Cervical Flexors",
+        "Lower Trapezius",
+        "Middle Trapezius",
+        "Serratus Anterior",
+        "Rhomboids"
+      ],
+      "symptoms": [
+        "Forward head posture",
+        "Rounded shoulders",
+        "Neck pain",
+        "Tension headaches",
+        "Thoracic kyphosis"
+      ]
+    },
+    "lower_crossed_syndrome": {
+      "description": "Pelvic and lower body dysfunction from prolonged sitting",
+      "tight_overactive_muscles": [
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Tensor Fasciae Latae",
+        "Erector Spinae (lumbar)",
+        "Piriformis"
+      ],
+      "weak_inhibited_muscles": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Deep Abdominals",
+        "Transversus Abdominis",
+        "Multifidus"
+      ],
+      "symptoms": [
+        "Anterior pelvic tilt",
+        "Lower back pain",
+        "Hip flexor tightness",
+        "Gluteal amnesia",
+        "Lumbar hyperlordosis"
+      ]
+    },
+    "common_pain_points": [
+      {
+        "location": "Neck (posterior)",
+        "cause": "Upper trapezius and levator scapulae overactivation from forward head posture",
+        "muscles_involved": [
+          "Upper Trapezius",
+          "Levator Scapulae",
+          "Semispinalis Capitis",
+          "Splenius Capitis"
+        ],
+        "prevalence_desk_workers": "60-70%"
+      },
+      {
+        "location": "Lower back",
+        "cause": "Weakened core and glutes combined with compressed lumbar discs from sitting",
+        "muscles_involved": [
+          "Erector Spinae",
+          "Multifidus",
+          "Quadratus Lumborum",
+          "Transversus Abdominis"
+        ],
+        "prevalence_desk_workers": "50-60%"
+      },
+      {
+        "location": "Between shoulder blades",
+        "cause": "Overstretched and weakened rhomboids and middle trapezius from rounded shoulders",
+        "muscles_involved": [
+          "Rhomboid Major",
+          "Rhomboid Minor",
+          "Middle Trapezius"
+        ],
+        "prevalence_desk_workers": "40-50%"
+      },
+      {
+        "location": "Hip flexors / anterior hip",
+        "cause": "Chronic shortening of hip flexors from prolonged sitting",
+        "muscles_involved": [
+          "Psoas Major",
+          "Iliacus",
+          "Rectus Femoris"
+        ],
+        "prevalence_desk_workers": "45-55%"
+      },
+      {
+        "location": "Wrists and forearms",
+        "cause": "Repetitive strain from keyboard and mouse use",
+        "muscles_involved": [
+          "Flexor Carpi Radialis",
+          "Flexor Carpi Ulnaris",
+          "Extensor Carpi Radialis",
+          "Pronator Teres"
+        ],
+        "prevalence_desk_workers": "30-40%"
+      },
+      {
+        "location": "Gluteal region",
+        "cause": "Gluteal amnesia from prolonged compression and disuse",
+        "muscles_involved": [
+          "Gluteus Maximus",
+          "Gluteus Medius",
+          "Piriformis"
+        ],
+        "prevalence_desk_workers": "35-45%"
+      },
+      {
+        "location": "Temples and jaw",
+        "cause": "Stress-related clenching and TMJ dysfunction",
+        "muscles_involved": [
+          "Temporalis",
+          "Masseter",
+          "Lateral Pterygoid",
+          "Medial Pterygoid"
+        ],
+        "prevalence_desk_workers": "25-35%"
+      }
+    ],
+    "muscle_imbalances": [
+      {
+        "imbalance": "Pectorals vs Rhomboids/Mid-Traps",
+        "ratio_typical_desk_worker": "Pecs 30-40% stronger than posterior counterparts",
+        "consequence": "Rounded shoulders, impingement risk",
+        "correction": "Rows, face pulls, reverse flyes, chest stretching"
+      },
+      {
+        "imbalance": "Hip Flexors vs Glutes",
+        "ratio_typical_desk_worker": "Hip flexors significantly overactive relative to glutes",
+        "consequence": "Anterior pelvic tilt, lower back pain, poor hip extension",
+        "correction": "Glute bridges, hip thrusts, hip flexor stretching, glute activation drills"
+      },
+      {
+        "imbalance": "Upper Traps vs Lower Traps",
+        "ratio_typical_desk_worker": "Upper traps 50-60% more active than lower traps",
+        "consequence": "Shoulder elevation, neck pain, scapular dyskinesis",
+        "correction": "Y-raises, wall slides, lower trap activation exercises"
+      },
+      {
+        "imbalance": "Lumbar Erectors vs Deep Core",
+        "ratio_typical_desk_worker": "Erectors compensating for weak transversus abdominis and multifidus",
+        "consequence": "Lower back pain, spinal instability, disc issues",
+        "correction": "Dead bugs, bird dogs, planks, diaphragmatic breathing"
+      },
+      {
+        "imbalance": "Quadriceps vs Hamstrings",
+        "ratio_typical_desk_worker": "Quads often 40-50% stronger than hamstrings (ideal is 60-70% ratio)",
+        "consequence": "Knee pain, ACL vulnerability, poor posterior chain function",
+        "correction": "Romanian deadlifts, hamstring curls, Nordic curls"
+      }
+    ]
+  },
+  "muscle_groups": [
+    {
+      "group_name": "Head and Neck Muscles",
+      "group_id": "head_neck",
+      "region": "Head, face, jaw, and cervical spine",
+      "muscle_count": 22,
+      "muscles": [
+        {
+          "id": "frontalis",
+          "romanian_name": "Frontalis (Musculul frontal)",
+          "latin_name": "Musculus frontalis",
+          "location": "Forehead, from galea aponeurotica to skin of eyebrow",
+          "primary_function": "Raises eyebrows and wrinkles forehead",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Minimal impact - used in facial expressions throughout day"
+          }
+        },
+        {
+          "id": "occipitalis",
+          "romanian_name": "Occipitalis (Musculul occipital)",
+          "latin_name": "Musculus occipitalis",
+          "location": "Back of skull, from superior nuchal line to galea aponeurotica",
+          "primary_function": "Pulls scalp backward",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Minimal impact"
+          }
+        },
+        {
+          "id": "temporalis",
+          "romanian_name": "Temporalis (Musculul temporal)",
+          "latin_name": "Musculus temporalis",
+          "location": "Side of skull in temporal fossa",
+          "primary_function": "Closes jaw, assists in chewing",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "May become overactive from stress clenching"
+          }
+        },
+        {
+          "id": "masseter",
+          "romanian_name": "Maseter (Musculul maseter)",
+          "latin_name": "Musculus masseter",
+          "location": "Side of jaw from zygomatic arch to mandible",
+          "primary_function": "Primary jaw closer, strongest bite force muscle",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Often becomes hypertonic from stress-related jaw clenching"
+          }
+        },
+        {
+          "id": "medial_pterygoid",
+          "romanian_name": "Pterigoidianul medial",
+          "latin_name": "Musculus pterygoideus medialis",
+          "location": "Deep to mandible, from pterygoid plate to inner mandible",
+          "primary_function": "Closes jaw, assists lateral jaw movement",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "May become overactive with stress clenching"
+          }
+        },
+        {
+          "id": "lateral_pterygoid",
+          "romanian_name": "Pterigoidianul lateral",
+          "latin_name": "Musculus pterygoideus lateralis",
+          "location": "Deep to mandible, from pterygoid plate to TMJ disc and condyle",
+          "primary_function": "Opens jaw, protrudes mandible, lateral jaw movement",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Can become dysfunctional with TMJ disorders from stress"
+          }
+        },
+        {
+          "id": "buccinator",
+          "romanian_name": "Buccinatorul (Musculul bucinator)",
+          "latin_name": "Musculus buccinator",
+          "location": "Cheek, between maxilla and mandible",
+          "primary_function": "Compresses cheek against teeth, aids chewing",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.2,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Maintained through eating and speaking"
+          }
+        },
+        {
+          "id": "orbicularis_oculi",
+          "romanian_name": "Orbicularul ochiului",
+          "latin_name": "Musculus orbicularis oculi",
+          "location": "Surrounding the eye socket",
+          "primary_function": "Closes eyelids, squinting, blinking",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.2,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal - blinking and squinting outdoors",
+            "cycling_30min": "Slightly activated from wind exposure squinting",
+            "desk_job_only": "Screen staring may reduce blink rate, causing strain not atrophy"
+          }
+        },
+        {
+          "id": "orbicularis_oris",
+          "romanian_name": "Orbicularul gurii",
+          "latin_name": "Musculus orbicularis oris",
+          "location": "Surrounding the mouth",
+          "primary_function": "Closes and purses lips, speech articulation",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.2,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Maintained through speaking and eating"
+          }
+        },
+        {
+          "id": "sternocleidomastoid",
+          "romanian_name": "Sternocleidomastoidianul",
+          "latin_name": "Musculus sternocleidomastoideus",
+          "location": "Side of neck, from sternum and clavicle to mastoid process",
+          "primary_function": "Flexes and rotates the head, assists in breathing",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for head stabilization",
+            "cycling_30min": "Moderately activated - holds head up while in cycling position",
+            "desk_job_only": "Often becomes tight and overactive from forward head posture"
+          }
+        },
+        {
+          "id": "scalene_anterior",
+          "romanian_name": "Scalenul anterior",
+          "latin_name": "Musculus scalenus anterior",
+          "location": "Side of neck, from cervical transverse processes to first rib",
+          "primary_function": "Lateral neck flexion, assists breathing by elevating first rib",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild activation as accessory breathing muscle",
+            "cycling_30min": "Moderate activation from breathing and neck position",
+            "desk_job_only": "Can become tight from poor posture, contributing to thoracic outlet syndrome"
+          }
+        },
+        {
+          "id": "scalene_middle",
+          "romanian_name": "Scalenul mijlociu",
+          "latin_name": "Musculus scalenus medius",
+          "location": "Side of neck, from cervical transverse processes to first rib",
+          "primary_function": "Lateral neck flexion, elevates first rib during breathing",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild activation as accessory breathing muscle",
+            "cycling_30min": "Moderate activation from breathing demands",
+            "desk_job_only": "Can become tight and restricted"
+          }
+        },
+        {
+          "id": "scalene_posterior",
+          "romanian_name": "Scalenul posterior",
+          "latin_name": "Musculus scalenus posterior",
+          "location": "Side of neck, from cervical transverse processes to second rib",
+          "primary_function": "Lateral neck flexion, elevates second rib during breathing",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild activation as accessory breathing muscle",
+            "cycling_30min": "Moderate activation from breathing demands",
+            "desk_job_only": "Can become tight and restricted"
+          }
+        },
+        {
+          "id": "platysma",
+          "romanian_name": "Platisma",
+          "latin_name": "Musculus platysma",
+          "location": "Superficial sheet across front of neck from jaw to chest",
+          "primary_function": "Depresses jaw, tenses skin of neck",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No significant activation",
+            "cycling_30min": "No significant activation",
+            "desk_job_only": "Minimal impact - used in facial expressions"
+          }
+        },
+        {
+          "id": "digastric",
+          "romanian_name": "Digastricul",
+          "latin_name": "Musculus digastricus",
+          "location": "Under the chin, two bellies connecting mandible to hyoid to mastoid",
+          "primary_function": "Opens jaw, elevates hyoid bone during swallowing",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.2,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Maintained through eating and swallowing"
+          }
+        },
+        {
+          "id": "mylohyoid",
+          "romanian_name": "Milohioidianul",
+          "latin_name": "Musculus mylohyoideus",
+          "location": "Floor of mouth, from mandible to hyoid bone",
+          "primary_function": "Elevates floor of mouth and hyoid, assists swallowing",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.2,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No direct activation",
+            "cycling_30min": "No direct activation",
+            "desk_job_only": "Maintained through swallowing and speech"
+          }
+        },
+        {
+          "id": "longus_colli",
+          "romanian_name": "Lungul gatului",
+          "latin_name": "Musculus longus colli",
+          "location": "Deep anterior cervical spine, along vertebral bodies C1-T3",
+          "primary_function": "Deep neck flexor, stabilizes cervical spine",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for head stabilization",
+            "cycling_30min": "Moderately activated holding neck position",
+            "desk_job_only": "Becomes WEAK and inhibited - key muscle in forward head posture correction"
+          }
+        },
+        {
+          "id": "longus_capitis",
+          "romanian_name": "Lungul capului",
+          "latin_name": "Musculus longus capitis",
+          "location": "Deep anterior neck, from cervical transverse processes to occipital bone",
+          "primary_function": "Flexes head and upper cervical spine",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for head stabilization",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Becomes weak - contributes to forward head posture when inhibited"
+          }
+        },
+        {
+          "id": "splenius_capitis",
+          "romanian_name": "Spleniusul capului",
+          "latin_name": "Musculus splenius capitis",
+          "location": "Posterior neck, from spinous processes to mastoid and occipital bone",
+          "primary_function": "Extends and rotates the head",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for head position",
+            "cycling_30min": "Moderately activated maintaining head extension",
+            "desk_job_only": "Can become tight from sustained head extension to view screen"
+          }
+        },
+        {
+          "id": "splenius_cervicis",
+          "romanian_name": "Spleniusul cervical",
+          "latin_name": "Musculus splenius cervicis",
+          "location": "Posterior neck, from thoracic spinous processes to cervical transverse processes",
+          "primary_function": "Extends and rotates cervical spine",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Can become tight and overloaded"
+          }
+        },
+        {
+          "id": "semispinalis_capitis",
+          "romanian_name": "Semispinalul capului",
+          "latin_name": "Musculus semispinalis capitis",
+          "location": "Deep posterior neck, from thoracic/cervical transverse processes to occipital bone",
+          "primary_function": "Extends head and cervical spine, maintains head posture",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for postural control",
+            "cycling_30min": "Moderately activated from sustained neck extension",
+            "desk_job_only": "Often overworked compensating for weak deep neck flexors"
+          }
+        },
+        {
+          "id": "suboccipitals",
+          "romanian_name": "Suboccipitalii",
+          "latin_name": "Musculi suboccipitales (Rectus capitis posterior major/minor, Obliquus capitis superior/inferior)",
+          "location": "Deep at base of skull between C1-C2 and occipital bone",
+          "primary_function": "Fine control of head movements, proprioception of head position",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for balance and gaze stabilization",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Become chronically tight and shortened - major cause of tension headaches"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Shoulder Muscles",
+      "group_id": "shoulder",
+      "region": "Shoulder girdle, scapula, and glenohumeral joint",
+      "muscle_count": 15,
+      "muscles": [
+        {
+          "id": "deltoid_anterior",
+          "romanian_name": "Deltoidul anterior",
+          "latin_name": "Musculus deltoideus (pars clavicularis)",
+          "location": "Front of shoulder, from lateral clavicle to deltoid tuberosity of humerus",
+          "primary_function": "Flexes and internally rotates the arm",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation from arm swing",
+            "cycling_30min": "Minimal - slight isometric from handlebar support",
+            "desk_job_only": "Atrophies significantly - rarely loaded overhead at desk"
+          }
+        },
+        {
+          "id": "deltoid_middle",
+          "romanian_name": "Deltoidul mijlociu",
+          "latin_name": "Musculus deltoideus (pars acromialis)",
+          "location": "Top of shoulder, from acromion to deltoid tuberosity",
+          "primary_function": "Abducts the arm (lifts to the side)",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Atrophies significantly - arm abduction rarely needed at desk"
+          }
+        },
+        {
+          "id": "deltoid_posterior",
+          "romanian_name": "Deltoidul posterior",
+          "latin_name": "Musculus deltoideus (pars spinalis)",
+          "location": "Rear of shoulder, from scapular spine to deltoid tuberosity",
+          "primary_function": "Extends and externally rotates the arm",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild activation from arm swing",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Atrophies quickly - contributes to rounded shoulder posture when weak"
+          }
+        },
+        {
+          "id": "supraspinatus",
+          "romanian_name": "Supraspinatul",
+          "latin_name": "Musculus supraspinatus",
+          "location": "Above scapular spine in supraspinous fossa",
+          "primary_function": "Initiates arm abduction (first 15 degrees), stabilizes shoulder joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mild stabilization during arm swing",
+            "cycling_30min": "Mild isometric from handlebar support",
+            "desk_job_only": "Weakens moderately - most commonly injured rotator cuff muscle"
+          }
+        },
+        {
+          "id": "infraspinatus",
+          "romanian_name": "Infraspinatul",
+          "latin_name": "Musculus infraspinatus",
+          "location": "Below scapular spine in infraspinous fossa",
+          "primary_function": "Externally rotates arm, stabilizes shoulder joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mild activation",
+            "cycling_30min": "Mild activation",
+            "desk_job_only": "Weakens significantly - internal rotation dominance from desk posture"
+          }
+        },
+        {
+          "id": "teres_minor",
+          "romanian_name": "Teresul mic",
+          "latin_name": "Musculus teres minor",
+          "location": "Lateral border of scapula to greater tubercle of humerus",
+          "primary_function": "Externally rotates arm, stabilizes shoulder joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mild activation",
+            "cycling_30min": "Mild activation",
+            "desk_job_only": "Weakens - part of the rotator cuff imbalance"
+          }
+        },
+        {
+          "id": "teres_major",
+          "romanian_name": "Teresul mare",
+          "latin_name": "Musculus teres major",
+          "location": "Inferior angle of scapula to intertubercular groove of humerus",
+          "primary_function": "Adducts, extends, and internally rotates the arm",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from handlebar pulling",
+            "desk_job_only": "Atrophies - no pulling movements at desk"
+          }
+        },
+        {
+          "id": "subscapularis",
+          "romanian_name": "Subscapularul",
+          "latin_name": "Musculus subscapularis",
+          "location": "Anterior surface of scapula (subscapular fossa) to lesser tubercle of humerus",
+          "primary_function": "Internally rotates arm, stabilizes shoulder joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mild stabilization",
+            "cycling_30min": "Mild stabilization",
+            "desk_job_only": "May become tight from internal rotation desk posture"
+          }
+        },
+        {
+          "id": "levator_scapulae",
+          "romanian_name": "Ridicatorul scapulei",
+          "latin_name": "Musculus levator scapulae",
+          "location": "From cervical transverse processes (C1-C4) to superior angle of scapula",
+          "primary_function": "Elevates scapula, assists in neck lateral flexion",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from shoulder/neck positioning",
+            "desk_job_only": "Becomes CHRONICALLY TIGHT and overactive - major source of neck/shoulder pain"
+          }
+        },
+        {
+          "id": "serratus_anterior",
+          "romanian_name": "Seratul anterior",
+          "latin_name": "Musculus serratus anterior",
+          "location": "Lateral ribs (1-9) to medial border of scapula (anterior surface)",
+          "primary_function": "Protracts scapula, rotates scapula upward, stabilizes scapula against ribcage",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Moderate activation from leaning on handlebars",
+            "desk_job_only": "Weakens significantly - contributes to scapular winging and poor shoulder mechanics"
+          }
+        },
+        {
+          "id": "trapezius_upper",
+          "romanian_name": "Trapezul superior",
+          "latin_name": "Musculus trapezius (pars descendens)",
+          "location": "Occipital bone and cervical spinous processes to lateral clavicle",
+          "primary_function": "Elevates and upwardly rotates scapula, extends neck",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mild postural activation",
+            "cycling_30min": "Moderate from neck/shoulder support",
+            "desk_job_only": "Becomes OVERACTIVE and hypertonic - main driver of neck tension"
+          }
+        },
+        {
+          "id": "trapezius_middle",
+          "romanian_name": "Trapezul mijlociu",
+          "latin_name": "Musculus trapezius (pars transversa)",
+          "location": "Upper thoracic spinous processes to acromion and scapular spine",
+          "primary_function": "Retracts (squeezes together) scapulae",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild postural activation",
+            "cycling_30min": "Minimal - cycling position encourages protraction",
+            "desk_job_only": "Weakens and lengthens - key contributor to rounded shoulders"
+          }
+        },
+        {
+          "id": "trapezius_lower",
+          "romanian_name": "Trapezul inferior",
+          "latin_name": "Musculus trapezius (pars ascendens)",
+          "location": "Lower thoracic spinous processes to medial scapular spine",
+          "primary_function": "Depresses and upwardly rotates scapula",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mild postural activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Weakens significantly - poor scapular control and shoulder impingement risk"
+          }
+        },
+        {
+          "id": "rhomboid_major",
+          "romanian_name": "Romboidul mare",
+          "latin_name": "Musculus rhomboideus major",
+          "location": "Spinous processes T2-T5 to medial border of scapula",
+          "primary_function": "Retracts and elevates scapula, rotates scapula downward",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild postural activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Weakens and lengthens - contributes to inter-scapular pain"
+          }
+        },
+        {
+          "id": "rhomboid_minor",
+          "romanian_name": "Romboidul mic",
+          "latin_name": "Musculus rhomboideus minor",
+          "location": "Spinous processes C7-T1 to medial border of scapula (above rhomboid major)",
+          "primary_function": "Retracts and elevates scapula",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild postural activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Weakens alongside rhomboid major"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Arm Muscles",
+      "group_id": "arms",
+      "region": "Upper arm (brachium) and forearm (antebrachium)",
+      "muscle_count": 24,
+      "muscles": [
+        {
+          "id": "biceps_brachii",
+          "romanian_name": "Bicepsul brahial",
+          "latin_name": "Musculus biceps brachii",
+          "location": "Anterior upper arm, from scapula (two heads) to radial tuberosity",
+          "primary_function": "Flexes elbow, supinates forearm",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal - slight isometric from arm swing",
+            "cycling_30min": "Minimal - slight grip on handlebars",
+            "desk_job_only": "Atrophies rapidly - no significant loading at desk"
+          }
+        },
+        {
+          "id": "brachialis",
+          "romanian_name": "Brahialul",
+          "latin_name": "Musculus brachialis",
+          "location": "Deep anterior upper arm, from mid-humerus to ulnar tuberosity",
+          "primary_function": "Primary elbow flexor (strongest elbow flexor)",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from handlebar grip",
+            "desk_job_only": "Maintains some tone from carrying objects but overall atrophies"
+          }
+        },
+        {
+          "id": "brachioradialis",
+          "romanian_name": "Brahioradialul",
+          "latin_name": "Musculus brachioradialis",
+          "location": "Lateral forearm, from lateral supracondylar ridge of humerus to styloid process of radius",
+          "primary_function": "Flexes elbow (especially in neutral/hammer grip position)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from grip maintenance",
+            "desk_job_only": "Partially maintained from mouse/keyboard use"
+          }
+        },
+        {
+          "id": "triceps_brachii",
+          "romanian_name": "Tricepsul brahial",
+          "latin_name": "Musculus triceps brachii",
+          "location": "Posterior upper arm, three heads from scapula and humerus to olecranon of ulna",
+          "primary_function": "Extends the elbow, long head assists shoulder extension",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal - slight activation in arm swing",
+            "cycling_30min": "Mild from pushing on handlebars",
+            "desk_job_only": "Atrophies significantly - one of the fastest to lose tone"
+          }
+        },
+        {
+          "id": "anconeus",
+          "romanian_name": "Anconeul",
+          "latin_name": "Musculus anconeus",
+          "location": "Small muscle on posterior elbow, from lateral epicondyle to olecranon",
+          "primary_function": "Assists elbow extension, stabilizes elbow joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild stabilization",
+            "desk_job_only": "Mild activation from desk activities"
+          }
+        },
+        {
+          "id": "pronator_teres",
+          "romanian_name": "Pronatorul rotund",
+          "latin_name": "Musculus pronator teres",
+          "location": "Proximal forearm, from medial epicondyle of humerus to lateral radius",
+          "primary_function": "Pronates forearm (turns palm down)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from grip positioning",
+            "desk_job_only": "Partially maintained from keyboard use but can become tight/inflamed"
+          }
+        },
+        {
+          "id": "pronator_quadratus",
+          "romanian_name": "Pronatorul patrat",
+          "latin_name": "Musculus pronator quadratus",
+          "location": "Deep distal forearm, between distal ulna and radius",
+          "primary_function": "Primary forearm pronator",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild activation",
+            "desk_job_only": "Activated during keyboard and mouse use"
+          }
+        },
+        {
+          "id": "supinator",
+          "romanian_name": "Supinatorul",
+          "latin_name": "Musculus supinator",
+          "location": "Deep proximal forearm, from lateral epicondyle and ulna to proximal radius",
+          "primary_function": "Supinates forearm (turns palm up)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Underused compared to pronators - imbalance develops"
+          }
+        },
+        {
+          "id": "flexor_carpi_radialis",
+          "romanian_name": "Flexorul radial al carpului",
+          "latin_name": "Musculus flexor carpi radialis",
+          "location": "Anterior forearm, from medial epicondyle to base of 2nd metacarpal",
+          "primary_function": "Flexes and radially deviates the wrist",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from grip",
+            "desk_job_only": "Actively used in typing - can develop repetitive strain"
+          }
+        },
+        {
+          "id": "flexor_carpi_ulnaris",
+          "romanian_name": "Flexorul ulnar al carpului",
+          "latin_name": "Musculus flexor carpi ulnaris",
+          "location": "Medial anterior forearm, from medial epicondyle and olecranon to pisiform bone",
+          "primary_function": "Flexes and ulnarly deviates the wrist",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from grip",
+            "desk_job_only": "Actively used in typing - can develop strain"
+          }
+        },
+        {
+          "id": "palmaris_longus",
+          "romanian_name": "Palmarul lung",
+          "latin_name": "Musculus palmaris longus",
+          "location": "Superficial anterior forearm, from medial epicondyle to palmar aponeurosis",
+          "primary_function": "Weak wrist flexor, tenses palmar fascia",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "No significant activation",
+            "cycling_30min": "Mild from grip",
+            "desk_job_only": "Minimal impact - note: absent in about 14% of population"
+          }
+        },
+        {
+          "id": "flexor_digitorum_superficialis",
+          "romanian_name": "Flexorul superficial al degetelor",
+          "latin_name": "Musculus flexor digitorum superficialis",
+          "location": "Intermediate anterior forearm, from medial epicondyle/radius/ulna to middle phalanges",
+          "primary_function": "Flexes the middle phalanges of fingers 2-5",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Moderate from grip maintenance",
+            "desk_job_only": "Heavily used in typing and mouse use - overuse risk"
+          }
+        },
+        {
+          "id": "flexor_digitorum_profundus",
+          "romanian_name": "Flexorul profund al degetelor",
+          "latin_name": "Musculus flexor digitorum profundus",
+          "location": "Deep anterior forearm, from ulna and interosseous membrane to distal phalanges",
+          "primary_function": "Flexes the distal phalanges of fingers 2-5",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Moderate from grip",
+            "desk_job_only": "Heavily used in typing - overuse risk"
+          }
+        },
+        {
+          "id": "flexor_pollicis_longus",
+          "romanian_name": "Flexorul lung al policelui",
+          "latin_name": "Musculus flexor pollicis longus",
+          "location": "Deep anterior forearm, from radius to distal phalanx of thumb",
+          "primary_function": "Flexes the thumb (distal phalanx)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from handlebar grip",
+            "desk_job_only": "Used in mouse clicking and spacebar pressing"
+          }
+        },
+        {
+          "id": "extensor_carpi_radialis_longus",
+          "romanian_name": "Extensorul radial lung al carpului",
+          "latin_name": "Musculus extensor carpi radialis longus",
+          "location": "Lateral forearm, from lateral supracondylar ridge to base of 2nd metacarpal",
+          "primary_function": "Extends and radially deviates the wrist",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Moderate from wrist extension on handlebars",
+            "desk_job_only": "Stabilizes wrist during typing - can develop lateral epicondylitis"
+          }
+        },
+        {
+          "id": "extensor_carpi_radialis_brevis",
+          "romanian_name": "Extensorul radial scurt al carpului",
+          "latin_name": "Musculus extensor carpi radialis brevis",
+          "location": "Posterior forearm, from lateral epicondyle to base of 3rd metacarpal",
+          "primary_function": "Extends and radially deviates the wrist",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Moderate from wrist positioning",
+            "desk_job_only": "Most commonly involved in tennis elbow from repetitive mouse/keyboard use"
+          }
+        },
+        {
+          "id": "extensor_carpi_ulnaris",
+          "romanian_name": "Extensorul ulnar al carpului",
+          "latin_name": "Musculus extensor carpi ulnaris",
+          "location": "Posterior forearm, from lateral epicondyle to base of 5th metacarpal",
+          "primary_function": "Extends and ulnarly deviates the wrist",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild activation",
+            "desk_job_only": "Active during keyboard use"
+          }
+        },
+        {
+          "id": "extensor_digitorum",
+          "romanian_name": "Extensorul degetelor",
+          "latin_name": "Musculus extensor digitorum",
+          "location": "Posterior forearm, from lateral epicondyle to extensor expansions of fingers 2-5",
+          "primary_function": "Extends fingers 2-5 at MCP joints",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild activation",
+            "desk_job_only": "Active during typing - finger extension between keystrokes"
+          }
+        },
+        {
+          "id": "extensor_digiti_minimi",
+          "romanian_name": "Extensorul degetului mic",
+          "latin_name": "Musculus extensor digiti minimi",
+          "location": "Posterior forearm, from lateral epicondyle to extensor expansion of 5th finger",
+          "primary_function": "Extends the little finger",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Some activation during typing"
+          }
+        },
+        {
+          "id": "extensor_indicis",
+          "romanian_name": "Extensorul indexului",
+          "latin_name": "Musculus extensor indicis",
+          "location": "Deep posterior forearm, from ulna to extensor expansion of index finger",
+          "primary_function": "Extends the index finger independently",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Used in pointing/mouse clicking motions"
+          }
+        },
+        {
+          "id": "extensor_pollicis_longus",
+          "romanian_name": "Extensorul lung al policelui",
+          "latin_name": "Musculus extensor pollicis longus",
+          "location": "Deep posterior forearm, from ulna to distal phalanx of thumb",
+          "primary_function": "Extends the distal phalanx of the thumb",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Used in spacebar and keyboard shortcuts"
+          }
+        },
+        {
+          "id": "extensor_pollicis_brevis",
+          "romanian_name": "Extensorul scurt al policelui",
+          "latin_name": "Musculus extensor pollicis brevis",
+          "location": "Deep posterior forearm, from radius to proximal phalanx of thumb",
+          "primary_function": "Extends the proximal phalanx of the thumb",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Involved in de Quervain's tenosynovitis from repetitive thumb movements"
+          }
+        },
+        {
+          "id": "abductor_pollicis_longus",
+          "romanian_name": "Abductorul lung al policelui",
+          "latin_name": "Musculus abductor pollicis longus",
+          "location": "Deep posterior forearm, from ulna/radius to base of 1st metacarpal",
+          "primary_function": "Abducts and extends the thumb",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild from grip",
+            "desk_job_only": "Involved in de Quervain's tenosynovitis from mouse/trackpad use"
+          }
+        },
+        {
+          "id": "coracobrachialis",
+          "romanian_name": "Coracobrahialul",
+          "latin_name": "Musculus coracobrachialis",
+          "location": "Upper medial arm, from coracoid process of scapula to mid-humerus",
+          "primary_function": "Flexes and adducts the arm at shoulder",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Atrophies from disuse"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Chest Muscles",
+      "group_id": "chest",
+      "region": "Anterior thorax",
+      "muscle_count": 4,
+      "muscles": [
+        {
+          "id": "pectoralis_major",
+          "romanian_name": "Pectoralul mare",
+          "latin_name": "Musculus pectoralis major",
+          "location": "Large fan-shaped muscle covering upper chest, from clavicle, sternum, and ribs to humerus",
+          "primary_function": "Flexes, adducts, and internally rotates the arm; assists in breathing",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation from arm swing",
+            "cycling_30min": "Mild isometric from handlebar support",
+            "desk_job_only": "Becomes SHORT and tight from rounded posture, but also loses strength"
+          }
+        },
+        {
+          "id": "pectoralis_minor",
+          "romanian_name": "Pectoralul mic",
+          "latin_name": "Musculus pectoralis minor",
+          "location": "Deep to pectoralis major, from ribs 3-5 to coracoid process of scapula",
+          "primary_function": "Depresses and protracts scapula, assists in breathing",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mild respiratory activation",
+            "cycling_30min": "Moderate - shortened from leaning forward",
+            "desk_job_only": "Becomes chronically SHORT and tight - major driver of rounded shoulders"
+          }
+        },
+        {
+          "id": "subclavius",
+          "romanian_name": "Subclavicularul",
+          "latin_name": "Musculus subclavius",
+          "location": "Small muscle between first rib and clavicle",
+          "primary_function": "Depresses and stabilizes the clavicle, protects subclavian vessels",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Mild stabilization",
+            "desk_job_only": "Can become tight, contributing to thoracic outlet compression"
+          }
+        },
+        {
+          "id": "serratus_anterior_chest",
+          "romanian_name": "Seratul anterior (portiunea toracica)",
+          "latin_name": "Musculus serratus anterior",
+          "location": "Lateral chest wall, ribs 1-9 wrapping to scapula",
+          "primary_function": "Protracts scapula, holds scapula against chest wall, assists in upward rotation",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Minimal direct activation",
+            "cycling_30min": "Moderate from weight-bearing through arms",
+            "desk_job_only": "Weakens significantly - leads to scapular winging"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Back Muscles",
+      "group_id": "back",
+      "region": "Posterior trunk - upper, middle, and lower back",
+      "muscle_count": 14,
+      "muscles": [
+        {
+          "id": "latissimus_dorsi",
+          "romanian_name": "Marele dorsal",
+          "latin_name": "Musculus latissimus dorsi",
+          "location": "Broad muscle covering lower and mid back, from thoracolumbar fascia, iliac crest, and lower ribs to humerus",
+          "primary_function": "Extends, adducts, and internally rotates the arm; pulls body up in climbing",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimal activation from arm swing",
+            "cycling_30min": "Mild from pulling on handlebars",
+            "desk_job_only": "Atrophies significantly - no pulling or overhead movements at desk"
+          }
+        },
+        {
+          "id": "erector_spinae_iliocostalis",
+          "romanian_name": "Erectorul spinal - Iliocostalul",
+          "latin_name": "Musculus iliocostalis",
+          "location": "Lateral column of erector spinae, from sacrum/iliac crest to ribs and cervical transverse processes",
+          "primary_function": "Extends and laterally flexes the spine, maintains upright posture",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for postural control",
+            "cycling_30min": "Moderately activated from trunk stabilization",
+            "desk_job_only": "Lumbar portion becomes overworked; thoracic portion weakens"
+          }
+        },
+        {
+          "id": "erector_spinae_longissimus",
+          "romanian_name": "Erectorul spinal - Longisimul",
+          "latin_name": "Musculus longissimus",
+          "location": "Middle column of erector spinae, from sacrum to mastoid process (longest muscle of back)",
+          "primary_function": "Extends spine, laterally flexes spine, assists head extension",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for upright posture",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Lumbar portion becomes fatigued from sustained sitting; thoracic portion weakens"
+          }
+        },
+        {
+          "id": "erector_spinae_spinalis",
+          "romanian_name": "Erectorul spinal - Spinalul",
+          "latin_name": "Musculus spinalis",
+          "location": "Medial column of erector spinae, from spinous processes of lumbar/lower thoracic to upper thoracic/cervical",
+          "primary_function": "Extends the vertebral column",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for posture",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Becomes fatigued from sustained postural demands"
+          }
+        },
+        {
+          "id": "multifidus",
+          "romanian_name": "Multifidul",
+          "latin_name": "Musculus multifidus",
+          "location": "Deep spinal muscle, from sacrum to C2, spanning 2-4 vertebral segments",
+          "primary_function": "Stabilizes individual vertebral segments, fine control of spinal movement",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "very_hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for spinal stabilization",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Atrophies RAPIDLY from sitting - key factor in lower back pain. Fat infiltration occurs quickly."
+          }
+        },
+        {
+          "id": "rotatores",
+          "romanian_name": "Rotatorii",
+          "latin_name": "Musculi rotatores",
+          "location": "Deepest back muscles, from transverse process of one vertebra to spinous process of vertebra above",
+          "primary_function": "Rotates vertebral column, proprioceptive feedback for spinal position",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during trunk rotation in gait",
+            "cycling_30min": "Minimally activated - limited rotation in cycling",
+            "desk_job_only": "Weakens from lack of rotational movement"
+          }
+        },
+        {
+          "id": "quadratus_lumborum",
+          "romanian_name": "Patratul lombar",
+          "latin_name": "Musculus quadratus lumborum",
+          "location": "Deep lower back, from iliac crest to 12th rib and lumbar transverse processes",
+          "primary_function": "Lateral flexion of trunk, stabilizes lumbar spine, assists breathing (fixes 12th rib)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for pelvic stabilization during gait",
+            "cycling_30min": "Mildly activated for trunk stability",
+            "desk_job_only": "Can become tight on one side from asymmetric sitting - common trigger point source"
+          }
+        },
+        {
+          "id": "semispinalis_thoracis",
+          "romanian_name": "Semispinalul toracic",
+          "latin_name": "Musculus semispinalis thoracis",
+          "location": "Deep back, from thoracic transverse processes to spinous processes 4-6 segments above",
+          "primary_function": "Extends and rotates the thoracic spine",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for posture",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from prolonged thoracic flexion"
+          }
+        },
+        {
+          "id": "interspinales",
+          "romanian_name": "Interspinalii",
+          "latin_name": "Musculi interspinales",
+          "location": "Small muscles between adjacent spinous processes throughout the spine",
+          "primary_function": "Assists spinal extension, proprioception of spinal position",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Gradual weakening from sustained flexed posture"
+          }
+        },
+        {
+          "id": "intertransversarii",
+          "romanian_name": "Intertransversarii",
+          "latin_name": "Musculi intertransversarii",
+          "location": "Small muscles between adjacent transverse processes throughout the spine",
+          "primary_function": "Lateral flexion of spine, spinal stabilization and proprioception",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during trunk sway",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Gradual weakening"
+          }
+        },
+        {
+          "id": "serratus_posterior_superior",
+          "romanian_name": "Seratul posterior superior",
+          "latin_name": "Musculus serratus posterior superior",
+          "location": "Upper back, from spinous processes C7-T3 to ribs 2-5",
+          "primary_function": "Elevates ribs 2-5 during inspiration",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated with increased breathing",
+            "cycling_30min": "Moderately activated with heavier breathing",
+            "desk_job_only": "Weakens from shallow desk breathing patterns"
+          }
+        },
+        {
+          "id": "serratus_posterior_inferior",
+          "romanian_name": "Seratul posterior inferior",
+          "latin_name": "Musculus serratus posterior inferior",
+          "location": "Lower back, from spinous processes T11-L2 to ribs 9-12",
+          "primary_function": "Depresses ribs 9-12 during forced expiration, anchors diaphragm",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated with breathing",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Weakens from shallow breathing"
+          }
+        },
+        {
+          "id": "splenius_thoracis",
+          "romanian_name": "Spleniusul toracic",
+          "latin_name": "Musculus semispinalis cervicis",
+          "location": "Deep back/neck, from upper thoracic transverse processes to cervical spinous processes",
+          "primary_function": "Extends and rotates cervical spine",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for head position",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Can become tight or weakened depending on posture"
+          }
+        },
+        {
+          "id": "thoracolumbar_fascia_stabilizers",
+          "romanian_name": "Stabilizatorii fasciei toracolombare",
+          "latin_name": "Musculi stabilizatores fasciae thoracolumbalis",
+          "location": "Complex connective tissue system of the lower back integrating multiple muscle attachments",
+          "primary_function": "Transfers force between upper and lower body, trunk stability",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated through gait mechanics",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "System becomes dysfunctional - loses tension and load-transfer capacity"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Abdominal Muscles",
+      "group_id": "abdominal",
+      "region": "Anterior and lateral abdomen",
+      "muscle_count": 5,
+      "muscles": [
+        {
+          "id": "rectus_abdominis",
+          "romanian_name": "Dreptul abdominal",
+          "latin_name": "Musculus rectus abdominis",
+          "location": "Front of abdomen, from pubic symphysis to xiphoid process and costal cartilages 5-7",
+          "primary_function": "Flexes trunk (sit-up motion), compresses abdomen, assists breathing",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for trunk stability",
+            "cycling_30min": "Mildly activated for trunk flexion position",
+            "desk_job_only": "Weakens moderately - shortened in seated position but not loaded"
+          }
+        },
+        {
+          "id": "external_oblique",
+          "romanian_name": "Oblicul extern",
+          "latin_name": "Musculus obliquus externus abdominis",
+          "location": "Lateral abdomen (superficial), from lower 8 ribs to iliac crest and linea alba",
+          "primary_function": "Rotates and laterally flexes trunk, compresses abdomen",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated from trunk rotation during gait",
+            "cycling_30min": "Mildly activated for trunk stability",
+            "desk_job_only": "Weakens from disuse - limited rotational demands at desk"
+          }
+        },
+        {
+          "id": "internal_oblique",
+          "romanian_name": "Oblicul intern",
+          "latin_name": "Musculus obliquus internus abdominis",
+          "location": "Lateral abdomen (deep to external oblique), from thoracolumbar fascia and iliac crest to lower ribs and linea alba",
+          "primary_function": "Rotates and laterally flexes trunk, compresses abdomen, supports core stability",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for trunk rotation and stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "transversus_abdominis",
+          "romanian_name": "Transversul abdominal",
+          "latin_name": "Musculus transversus abdominis",
+          "location": "Deepest abdominal muscle, wrapping horizontally from thoracolumbar fascia to linea alba",
+          "primary_function": "Compresses abdomen, stabilizes spine and pelvis (natural weight belt)",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for trunk and pelvic stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Atrophies significantly - major contributor to lower back instability"
+          }
+        },
+        {
+          "id": "pyramidalis",
+          "romanian_name": "Piramidalul",
+          "latin_name": "Musculus pyramidalis",
+          "location": "Small triangular muscle in lower abdomen, from pubis to linea alba",
+          "primary_function": "Tenses the linea alba (minimal functional role)",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimal activation",
+            "cycling_30min": "Minimal activation",
+            "desk_job_only": "Minimal impact - absent in about 20% of population"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Hip Muscles",
+      "group_id": "hip",
+      "region": "Hip joint, pelvis, and deep external rotators",
+      "muscle_count": 12,
+      "muscles": [
+        {
+          "id": "psoas_major",
+          "romanian_name": "Psoasul mare",
+          "latin_name": "Musculus psoas major",
+          "location": "Deep core/hip, from lumbar vertebral bodies T12-L5 to lesser trochanter of femur",
+          "primary_function": "Flexes the hip, stabilizes the lumbar spine, postural muscle",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during hip flexion phase of gait",
+            "cycling_30min": "Highly activated during upstroke",
+            "desk_job_only": "Becomes chronically SHORTENED and tight from prolonged sitting - key pain generator"
+          }
+        },
+        {
+          "id": "iliacus",
+          "romanian_name": "Iliacul",
+          "latin_name": "Musculus iliacus",
+          "location": "Lines the iliac fossa of pelvis, joins psoas to insert on lesser trochanter",
+          "primary_function": "Flexes the hip (together with psoas forms the iliopsoas)",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during hip flexion",
+            "cycling_30min": "Highly activated during upstroke",
+            "desk_job_only": "Becomes shortened and tight from sitting"
+          }
+        },
+        {
+          "id": "gluteus_maximus",
+          "romanian_name": "Fesierul mare (Gluteul mare)",
+          "latin_name": "Musculus gluteus maximus",
+          "location": "Largest muscle in the body, from ilium, sacrum, and coccyx to IT band and gluteal tuberosity of femur",
+          "primary_function": "Extends and externally rotates the hip; primary muscle for climbing, running, standing from sitting",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately to highly activated during push-off phase",
+            "cycling_30min": "Highly activated during downstroke",
+            "desk_job_only": "Atrophies RAPIDLY - 'gluteal amnesia' from prolonged compression and disuse"
+          }
+        },
+        {
+          "id": "gluteus_medius",
+          "romanian_name": "Fesierul mijlociu (Gluteul mediu)",
+          "latin_name": "Musculus gluteus medius",
+          "location": "Lateral hip, from outer surface of ilium to greater trochanter of femur",
+          "primary_function": "Abducts the hip, stabilizes pelvis during single-leg stance (walking)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 2.0,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Highly activated for pelvic stability with every step",
+            "cycling_30min": "Mildly activated - limited abduction in cycling",
+            "desk_job_only": "Weakens significantly - causes Trendelenburg gait pattern and knee valgus"
+          }
+        },
+        {
+          "id": "gluteus_minimus",
+          "romanian_name": "Fesierul mic (Gluteul mic)",
+          "latin_name": "Musculus gluteus minimus",
+          "location": "Deep to gluteus medius, from outer ilium to greater trochanter",
+          "primary_function": "Abducts and internally rotates the hip, assists pelvic stabilization",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for pelvic stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "tensor_fasciae_latae",
+          "romanian_name": "Tensorul fasciei lata",
+          "latin_name": "Musculus tensor fasciae latae",
+          "location": "Lateral hip, from anterior iliac crest to IT band",
+          "primary_function": "Flexes, abducts, and internally rotates the hip; tenses IT band",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during hip flexion",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Becomes TIGHT and overactive compensating for weak glutes - IT band syndrome risk"
+          }
+        },
+        {
+          "id": "piriformis",
+          "romanian_name": "Piriformul",
+          "latin_name": "Musculus piriformis",
+          "location": "Deep buttock, from anterior sacrum through greater sciatic notch to greater trochanter",
+          "primary_function": "Externally rotates the hip, stabilizes hip joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for hip stabilization",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Becomes tight from prolonged sitting - can compress sciatic nerve (piriformis syndrome)"
+          }
+        },
+        {
+          "id": "obturator_internus",
+          "romanian_name": "Obturatorul intern",
+          "latin_name": "Musculus obturatorius internus",
+          "location": "Deep pelvis, from inner obturator membrane through lesser sciatic notch to greater trochanter",
+          "primary_function": "Externally rotates the hip, stabilizes hip joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for hip stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Compressed during sitting - can become tight and irritated"
+          }
+        },
+        {
+          "id": "obturator_externus",
+          "romanian_name": "Obturatorul extern",
+          "latin_name": "Musculus obturatorius externus",
+          "location": "Deep hip, from outer obturator membrane to trochanteric fossa of femur",
+          "primary_function": "Externally rotates and stabilizes the hip",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Mild weakening from disuse"
+          }
+        },
+        {
+          "id": "gemellus_superior",
+          "romanian_name": "Gemelul superior",
+          "latin_name": "Musculus gemellus superior",
+          "location": "Deep buttock, from ischial spine to greater trochanter (along obturator internus tendon)",
+          "primary_function": "Externally rotates the hip",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for hip control",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Compressed during sitting, weakens from disuse"
+          }
+        },
+        {
+          "id": "gemellus_inferior",
+          "romanian_name": "Gemelul inferior",
+          "latin_name": "Musculus gemellus inferior",
+          "location": "Deep buttock, from ischial tuberosity to greater trochanter",
+          "primary_function": "Externally rotates the hip",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Compressed during sitting"
+          }
+        },
+        {
+          "id": "quadratus_femoris",
+          "romanian_name": "Patratul femural",
+          "latin_name": "Musculus quadratus femoris",
+          "location": "Deep buttock, flat muscle from ischial tuberosity to intertrochanteric crest of femur",
+          "primary_function": "Externally rotates and adducts the hip",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Compressed and weakened from sitting"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Thigh Muscles",
+      "group_id": "thigh",
+      "region": "Anterior, posterior, medial, and lateral thigh",
+      "muscle_count": 13,
+      "muscles": [
+        {
+          "id": "rectus_femoris",
+          "romanian_name": "Dreptul femural",
+          "latin_name": "Musculus rectus femoris",
+          "location": "Anterior thigh (superficial), from anterior inferior iliac spine to patella/tibial tuberosity",
+          "primary_function": "Extends knee and flexes hip (only quad that crosses both joints)",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during swing phase and stair climbing",
+            "cycling_30min": "Highly activated during downstroke",
+            "desk_job_only": "Shortened from sitting (hip flexion), weakens from lack of knee extension loading"
+          }
+        },
+        {
+          "id": "vastus_lateralis",
+          "romanian_name": "Vastul lateral",
+          "latin_name": "Musculus vastus lateralis",
+          "location": "Lateral anterior thigh, from greater trochanter and linea aspera to patella/tibial tuberosity",
+          "primary_function": "Extends the knee (largest quadriceps component)",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during stance phase",
+            "cycling_30min": "Highly activated - primary cycling muscle",
+            "desk_job_only": "Atrophies rapidly - one of the first muscles to show visible loss"
+          }
+        },
+        {
+          "id": "vastus_medialis",
+          "romanian_name": "Vastul medial",
+          "latin_name": "Musculus vastus medialis",
+          "location": "Medial anterior thigh, from linea aspera to patella/tibial tuberosity. VMO portion is tear-drop shaped near knee",
+          "primary_function": "Extends the knee, VMO stabilizes patella tracking",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated, especially in terminal knee extension",
+            "cycling_30min": "Highly activated during downstroke",
+            "desk_job_only": "VMO atrophies fastest of all quad components - leads to patella tracking problems"
+          }
+        },
+        {
+          "id": "vastus_intermedius",
+          "romanian_name": "Vastul intermediar",
+          "latin_name": "Musculus vastus intermedius",
+          "location": "Deep anterior thigh (beneath rectus femoris), from anterior femoral shaft to patella",
+          "primary_function": "Extends the knee",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated",
+            "cycling_30min": "Highly activated",
+            "desk_job_only": "Atrophies with other quads"
+          }
+        },
+        {
+          "id": "sartorius",
+          "romanian_name": "Croitorul",
+          "latin_name": "Musculus sartorius",
+          "location": "Longest muscle in body, diagonal from anterior superior iliac spine to medial proximal tibia (pes anserinus)",
+          "primary_function": "Flexes, abducts, and externally rotates hip; flexes knee (cross-legged sitting position)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during swing phase",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Shortened from sitting posture"
+          }
+        },
+        {
+          "id": "biceps_femoris",
+          "romanian_name": "Bicepsul femural",
+          "latin_name": "Musculus biceps femoris",
+          "location": "Posterior lateral thigh, long head from ischial tuberosity, short head from linea aspera, to fibular head",
+          "primary_function": "Flexes knee, extends hip (long head), externally rotates knee",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during late swing phase (decelerating leg)",
+            "cycling_30min": "Moderately activated during upstroke",
+            "desk_job_only": "Weakens and shortens from sitting - common hamstring strain risk factor"
+          }
+        },
+        {
+          "id": "semitendinosus",
+          "romanian_name": "Semitendinosul",
+          "latin_name": "Musculus semitendinosus",
+          "location": "Posterior medial thigh, from ischial tuberosity to medial proximal tibia (pes anserinus)",
+          "primary_function": "Flexes knee, extends hip, internally rotates knee",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated",
+            "cycling_30min": "Moderately activated during upstroke",
+            "desk_job_only": "Weakens and shortens from prolonged sitting"
+          }
+        },
+        {
+          "id": "semimembranosus",
+          "romanian_name": "Semimembranosul",
+          "latin_name": "Musculus semimembranosus",
+          "location": "Posterior medial thigh (deep to semitendinosus), from ischial tuberosity to medial tibial condyle",
+          "primary_function": "Flexes knee, extends hip, internally rotates knee",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Weakens and shortens"
+          }
+        },
+        {
+          "id": "adductor_magnus",
+          "romanian_name": "Adductorul mare",
+          "latin_name": "Musculus adductor magnus",
+          "location": "Deep medial thigh, from ischial tuberosity and pubic ramus to linea aspera and adductor tubercle",
+          "primary_function": "Adducts thigh, assists hip extension (posterior portion) and hip flexion (anterior portion)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for medial stability",
+            "cycling_30min": "Moderately activated in downstroke",
+            "desk_job_only": "Weakens from disuse and sustained shortened position"
+          }
+        },
+        {
+          "id": "adductor_longus",
+          "romanian_name": "Adductorul lung",
+          "latin_name": "Musculus adductor longus",
+          "location": "Medial thigh, from pubic body to middle third of linea aspera",
+          "primary_function": "Adducts and flexes the thigh",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for limb control",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Shortened from sitting - groin strain risk when suddenly active"
+          }
+        },
+        {
+          "id": "adductor_brevis",
+          "romanian_name": "Adductorul scurt",
+          "latin_name": "Musculus adductor brevis",
+          "location": "Deep medial thigh, from pubis to upper linea aspera",
+          "primary_function": "Adducts and flexes the thigh",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Shortened from sitting"
+          }
+        },
+        {
+          "id": "gracilis",
+          "romanian_name": "Gracilul",
+          "latin_name": "Musculus gracilis",
+          "location": "Superficial medial thigh, from pubic symphysis to medial proximal tibia (pes anserinus)",
+          "primary_function": "Adducts thigh, flexes and internally rotates knee",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens moderately from disuse"
+          }
+        },
+        {
+          "id": "pectineus",
+          "romanian_name": "Pectineul",
+          "latin_name": "Musculus pectineus",
+          "location": "Upper medial thigh, from pectineal line of pubis to pectineal line of femur",
+          "primary_function": "Adducts, flexes, and internally rotates the thigh",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during swing phase",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Shortened from sitting position"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Lower Leg Muscles",
+      "group_id": "lower_leg",
+      "region": "Leg between knee and ankle (anterior, lateral, and posterior compartments)",
+      "muscle_count": 13,
+      "muscles": [
+        {
+          "id": "gastrocnemius",
+          "romanian_name": "Gastrocnemianul",
+          "latin_name": "Musculus gastrocnemius",
+          "location": "Superficial posterior calf, two heads from medial and lateral femoral condyles to calcaneus via Achilles tendon",
+          "primary_function": "Plantarflexes ankle (pushes foot down), assists knee flexion",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated during push-off phase of each step",
+            "cycling_30min": "Moderately activated during downstroke",
+            "desk_job_only": "Atrophies moderately - some maintenance from standing/walking to bathroom"
+          }
+        },
+        {
+          "id": "soleus",
+          "romanian_name": "Soleusul",
+          "latin_name": "Musculus soleus",
+          "location": "Deep posterior calf (under gastrocnemius), from fibula and tibia to calcaneus via Achilles tendon",
+          "primary_function": "Plantarflexes ankle, critical postural muscle preventing forward falling",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated - tonic postural muscle active throughout stance",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Weakens from disuse - important venous pump for leg circulation (DVT risk)"
+          }
+        },
+        {
+          "id": "plantaris",
+          "romanian_name": "Plantarul",
+          "latin_name": "Musculus plantaris",
+          "location": "Small muscle with long thin tendon, from lateral femoral condyle to calcaneus",
+          "primary_function": "Weak ankle plantarflexor and knee flexor (vestigial muscle)",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimally activated alongside gastrocnemius",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Minimal functional impact - absent in about 7-10% of population"
+          }
+        },
+        {
+          "id": "tibialis_anterior",
+          "romanian_name": "Tibialul anterior",
+          "latin_name": "Musculus tibialis anterior",
+          "location": "Anterior shin, from lateral tibia and interosseous membrane to medial cuneiform and 1st metatarsal",
+          "primary_function": "Dorsiflexes ankle (lifts foot up), inverts foot, prevents foot slap during walking",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated during swing phase (lifting foot) and heel strike",
+            "cycling_30min": "Moderately activated maintaining foot position on pedal",
+            "desk_job_only": "Weakens from disuse - shin splint risk when suddenly increasing activity"
+          }
+        },
+        {
+          "id": "tibialis_posterior",
+          "romanian_name": "Tibialul posterior",
+          "latin_name": "Musculus tibialis posterior",
+          "location": "Deep posterior leg, from tibia, fibula, and interosseous membrane to navicular and multiple tarsal/metatarsal bones",
+          "primary_function": "Plantarflexes and inverts foot, primary dynamic support of medial arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Highly activated for arch support during stance phase",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens - can lead to flat feet and posterior tibial tendon dysfunction"
+          }
+        },
+        {
+          "id": "fibularis_longus",
+          "romanian_name": "Fibularul (Peronealul) lung",
+          "latin_name": "Musculus fibularis longus",
+          "location": "Lateral leg, from fibular head to base of 1st metatarsal and medial cuneiform (wraps under foot)",
+          "primary_function": "Everts foot, plantarflexes ankle, supports transverse arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for lateral ankle stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens - increases ankle sprain risk when resuming activity"
+          }
+        },
+        {
+          "id": "fibularis_brevis",
+          "romanian_name": "Fibularul (Peronealul) scurt",
+          "latin_name": "Musculus fibularis brevis",
+          "location": "Lateral leg, from distal two-thirds of fibula to base of 5th metatarsal",
+          "primary_function": "Everts foot, weak ankle plantarflexor",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for lateral stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens - ankle instability risk"
+          }
+        },
+        {
+          "id": "fibularis_tertius",
+          "romanian_name": "Fibularul (Peronealul) al treilea",
+          "latin_name": "Musculus fibularis tertius",
+          "location": "Anterior lateral leg, from distal fibula to base of 5th metatarsal",
+          "primary_function": "Dorsiflexes and everts the foot",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during dorsiflexion",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse - variable presence (absent in some people)"
+          }
+        },
+        {
+          "id": "extensor_digitorum_longus",
+          "romanian_name": "Extensorul lung al degetelor piciorului",
+          "latin_name": "Musculus extensor digitorum longus",
+          "location": "Anterior leg, from lateral tibial condyle and fibula to dorsal expansions of toes 2-5",
+          "primary_function": "Extends toes 2-5, dorsiflexes ankle",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during swing phase",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "extensor_hallucis_longus",
+          "romanian_name": "Extensorul lung al halucelui",
+          "latin_name": "Musculus extensor hallucis longus",
+          "location": "Anterior leg (deep), from fibula to distal phalanx of big toe",
+          "primary_function": "Extends the big toe, assists dorsiflexion",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated lifting big toe during swing",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "flexor_digitorum_longus_leg",
+          "romanian_name": "Flexorul lung al degetelor piciorului",
+          "latin_name": "Musculus flexor digitorum longus",
+          "location": "Deep posterior leg, from posterior tibia to distal phalanges of toes 2-5",
+          "primary_function": "Flexes toes 2-5, plantarflexes ankle, supports longitudinal arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during toe-off phase for grip",
+            "cycling_30min": "Mildly activated from pedal grip",
+            "desk_job_only": "Weakens from disuse and shoe wearing"
+          }
+        },
+        {
+          "id": "flexor_hallucis_longus",
+          "romanian_name": "Flexorul lung al halucelui",
+          "latin_name": "Musculus flexor hallucis longus",
+          "location": "Deep posterior leg, from posterior fibula to distal phalanx of big toe",
+          "primary_function": "Flexes big toe (critical for push-off in walking/running), plantarflexes ankle",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated during push-off - big toe bears major load",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse and restrictive footwear"
+          }
+        },
+        {
+          "id": "popliteus",
+          "romanian_name": "Popliteul",
+          "latin_name": "Musculus popliteus",
+          "location": "Posterior knee, from lateral femoral condyle to posterior proximal tibia",
+          "primary_function": "Unlocks the knee from full extension, internally rotates tibia, stabilizes knee",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated at initiation of knee flexion each step",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Maintains some tone from standing/sitting transitions"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Foot Muscles",
+      "group_id": "foot",
+      "region": "Intrinsic muscles of the foot (dorsal and plantar)",
+      "muscle_count": 13,
+      "muscles": [
+        {
+          "id": "extensor_digitorum_brevis",
+          "romanian_name": "Extensorul scurt al degetelor piciorului",
+          "latin_name": "Musculus extensor digitorum brevis",
+          "location": "Dorsum of foot, from calcaneus to tendons of toes 2-4",
+          "primary_function": "Extends toes 2-4 at MTP joints",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during toe extension in gait",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from disuse and restrictive shoes"
+          }
+        },
+        {
+          "id": "extensor_hallucis_brevis",
+          "romanian_name": "Extensorul scurt al halucelui",
+          "latin_name": "Musculus extensor hallucis brevis",
+          "location": "Dorsum of foot, from calcaneus to proximal phalanx of big toe",
+          "primary_function": "Extends the big toe at MTP joint",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "abductor_hallucis",
+          "romanian_name": "Abductorul halucelui",
+          "latin_name": "Musculus abductor hallucis",
+          "location": "Medial plantar foot, from calcaneus to proximal phalanx of big toe",
+          "primary_function": "Abducts and flexes big toe, supports medial longitudinal arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Highly activated for arch support and big toe stability",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Atrophies significantly from shoe wearing and disuse - hallux valgus (bunion) risk"
+          }
+        },
+        {
+          "id": "flexor_digitorum_brevis_foot",
+          "romanian_name": "Flexorul scurt al degetelor piciorului",
+          "latin_name": "Musculus flexor digitorum brevis",
+          "location": "Central plantar foot, from calcaneus to middle phalanges of toes 2-5",
+          "primary_function": "Flexes toes 2-5 at PIP joints, supports longitudinal arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated for foot grip and arch support",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from disuse and supportive footwear"
+          }
+        },
+        {
+          "id": "abductor_digiti_minimi_foot",
+          "romanian_name": "Abductorul degetului mic al piciorului",
+          "latin_name": "Musculus abductor digiti minimi pedis",
+          "location": "Lateral plantar foot, from calcaneus to proximal phalanx of 5th toe",
+          "primary_function": "Abducts and flexes the little toe, supports lateral arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for lateral foot stability",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens and atrophies from narrow shoes"
+          }
+        },
+        {
+          "id": "quadratus_plantae",
+          "romanian_name": "Patratul plantar",
+          "latin_name": "Musculus quadratus plantae",
+          "location": "Deep plantar foot, from calcaneus to tendon of flexor digitorum longus",
+          "primary_function": "Corrects pull direction of flexor digitorum longus, assists toe flexion",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated during toe grip phase",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "lumbricals_foot",
+          "romanian_name": "Lumbricali piciorului",
+          "latin_name": "Musculi lumbricales pedis (4 muscles)",
+          "location": "Plantar foot, from tendons of flexor digitorum longus to extensor expansions of toes 2-5",
+          "primary_function": "Flex MTP joints while extending IP joints of toes 2-5 (toe dexterity)",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for toe control during push-off",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Atrophy contributes to claw toes and hammer toes"
+          }
+        },
+        {
+          "id": "flexor_hallucis_brevis",
+          "romanian_name": "Flexorul scurt al halucelui",
+          "latin_name": "Musculus flexor hallucis brevis",
+          "location": "Medial plantar foot, from cuboid and cuneiforms to proximal phalanx of big toe (contains sesamoid bones)",
+          "primary_function": "Flexes big toe at MTP joint, critical for push-off in gait",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.2,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Highly activated during push-off phase",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse and stiff-soled shoes"
+          }
+        },
+        {
+          "id": "adductor_hallucis",
+          "romanian_name": "Adductorul halucelui",
+          "latin_name": "Musculus adductor hallucis",
+          "location": "Deep plantar foot, oblique head from tarsal bones and transverse head from MTP ligaments to proximal phalanx of big toe",
+          "primary_function": "Adducts big toe, supports transverse arch",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for transverse arch support",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Can become tight from narrow shoes contributing to bunions"
+          }
+        },
+        {
+          "id": "flexor_digiti_minimi_brevis_foot",
+          "romanian_name": "Flexorul scurt al degetului mic al piciorului",
+          "latin_name": "Musculus flexor digiti minimi brevis pedis",
+          "location": "Lateral plantar foot, from base of 5th metatarsal to proximal phalanx of 5th toe",
+          "primary_function": "Flexes the little toe",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from disuse"
+          }
+        },
+        {
+          "id": "plantar_interossei",
+          "romanian_name": "Interosoșii plantari",
+          "latin_name": "Musculi interossei plantares (3 muscles)",
+          "location": "Between metatarsals on plantar side, medial to toes 3-5",
+          "primary_function": "Adduct toes 3-5 toward 2nd toe, flex MTP joints",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for toe alignment during stance",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Atrophy contributes to toe deformities"
+          }
+        },
+        {
+          "id": "dorsal_interossei_foot",
+          "romanian_name": "Interosoșii dorsali ai piciorului",
+          "latin_name": "Musculi interossei dorsales pedis (4 muscles)",
+          "location": "Between metatarsals on dorsal side",
+          "primary_function": "Abduct toes 2-4 away from 2nd toe, flex MTP joints",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.0,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for toe spread and stability",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Atrophy from narrow shoes and disuse"
+          }
+        },
+        {
+          "id": "opponens_digiti_minimi_foot",
+          "romanian_name": "Opozantul degetului mic al piciorului",
+          "latin_name": "Musculus opponens digiti minimi pedis",
+          "location": "Lateral plantar foot, from long plantar ligament to 5th metatarsal",
+          "primary_function": "Lateral rotation of 5th metatarsal, deepens foot arch",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for arch dynamics",
+            "cycling_30min": "Minimally activated",
+            "desk_job_only": "Weakens from supportive footwear disuse"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Deep Core and Stabilizer Muscles",
+      "group_id": "deep_core",
+      "region": "Deep trunk muscles forming the inner stabilization unit",
+      "muscle_count": 6,
+      "muscles": [
+        {
+          "id": "transversus_abdominis_core",
+          "romanian_name": "Transversul abdominal (stabilizator profund)",
+          "latin_name": "Musculus transversus abdominis",
+          "location": "Deepest abdominal layer, wrapping horizontally around trunk like a corset",
+          "primary_function": "Primary spinal stabilizer, increases intra-abdominal pressure for core stiffness",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.2,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated - anticipatory firing before each step",
+            "cycling_30min": "Mildly activated for trunk stability on bike",
+            "desk_job_only": "CRITICAL LOSS - firing timing becomes delayed, major factor in lower back pain"
+          }
+        },
+        {
+          "id": "multifidus_core",
+          "romanian_name": "Multifidul (stabilizator segmentar)",
+          "latin_name": "Musculus multifidus",
+          "location": "Deep paraspinal muscle, individual segments from sacrum to C2",
+          "primary_function": "Segmental spinal stabilization, controls vertebral shear forces",
+          "atrophy_rate": "rapid",
+          "strength_loss_per_week_inactivity": 2.5,
+          "recovery_difficulty": "very_hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for spinal control",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "RAPID atrophy with fat infiltration - does NOT recover spontaneously even when pain resolves"
+          }
+        },
+        {
+          "id": "diaphragm_core",
+          "romanian_name": "Diafragma (functie stabilizatoare)",
+          "latin_name": "Musculus diaphragma (stabilization role)",
+          "location": "Dome-shaped muscle at base of ribcage separating thorax from abdomen",
+          "primary_function": "Provides top-down pressure for core stability (in addition to breathing)",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated - breathing coordination with core stability",
+            "cycling_30min": "Highly activated from increased breathing demand",
+            "desk_job_only": "Stabilization function diminishes - chest breathing dominates over diaphragmatic"
+          }
+        },
+        {
+          "id": "pelvic_floor_core",
+          "romanian_name": "Planseul pelvin (functie stabilizatoare)",
+          "latin_name": "Musculi diaphragmatis pelvis (stabilization role)",
+          "location": "Sling of muscles at base of pelvis",
+          "primary_function": "Provides bottom-up support for core stability, counteracts intra-abdominal pressure",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated - rhythmic engagement with gait",
+            "cycling_30min": "Variable - saddle pressure can inhibit or compress",
+            "desk_job_only": "Weakens from prolonged sitting and poor breathing - incontinence risk increases"
+          }
+        },
+        {
+          "id": "internal_oblique_core",
+          "romanian_name": "Oblicul intern (functie stabilizatoare)",
+          "latin_name": "Musculus obliquus internus abdominis (deep fibers)",
+          "location": "Deep fibers of internal oblique that attach to thoracolumbar fascia",
+          "primary_function": "Tensions thoracolumbar fascia for spinal stability, works with transversus abdominis",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for trunk rotation control",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from disuse - core stability compromised"
+          }
+        },
+        {
+          "id": "psoas_major_core",
+          "romanian_name": "Psoasul mare (functie stabilizatoare)",
+          "latin_name": "Musculus psoas major (spinal stabilization role)",
+          "location": "Deep core, attaching to all lumbar vertebral bodies and discs",
+          "primary_function": "Stabilizes lumbar spine under compressive loads, maintains lumbar lordosis",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for lumbar stability during gait",
+            "cycling_30min": "Actively engaged but in shortened position",
+            "desk_job_only": "Becomes shortened and dysfunctional - paradoxically both tight AND weak"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Respiratory Muscles",
+      "group_id": "respiratory",
+      "region": "Thoracic cavity muscles involved in breathing",
+      "muscle_count": 7,
+      "muscles": [
+        {
+          "id": "diaphragm",
+          "romanian_name": "Diafragma",
+          "latin_name": "Musculus diaphragma",
+          "location": "Large dome-shaped muscle at base of ribcage, central tendon with peripheral muscular fibers from xiphoid, lower ribs, and lumbar vertebrae",
+          "primary_function": "Primary muscle of respiration - contracts and descends to create negative pressure for inhalation",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated from increased breathing demand",
+            "cycling_30min": "Highly activated from cardiorespiratory demand",
+            "desk_job_only": "Function diminishes - shallow chest breathing pattern develops, reduced excursion range"
+          }
+        },
+        {
+          "id": "external_intercostals",
+          "romanian_name": "Intercostalii externi",
+          "latin_name": "Musculi intercostales externi",
+          "location": "Between ribs (11 pairs), fibers run obliquely downward and forward",
+          "primary_function": "Elevate ribs during inspiration, expanding the thoracic cavity",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Moderately activated with increased breathing",
+            "cycling_30min": "Highly activated from heavy breathing",
+            "desk_job_only": "Gradual weakening - restricted rib mobility from slouched posture"
+          }
+        },
+        {
+          "id": "internal_intercostals",
+          "romanian_name": "Intercostalii interni",
+          "latin_name": "Musculi intercostales interni",
+          "location": "Between ribs (11 pairs), deep to external intercostals, fibers run obliquely upward and forward",
+          "primary_function": "Depress ribs during forced expiration",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.7,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during expiration",
+            "cycling_30min": "Moderately activated during heavy breathing",
+            "desk_job_only": "Gradual weakening from shallow breathing patterns"
+          }
+        },
+        {
+          "id": "innermost_intercostals",
+          "romanian_name": "Intercostalii intimi",
+          "latin_name": "Musculi intercostales intimi",
+          "location": "Deepest intercostal layer, incomplete - present mainly in lateral chest wall",
+          "primary_function": "Assists internal intercostals in forced expiration",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Moderately activated",
+            "desk_job_only": "Minimal individual impact"
+          }
+        },
+        {
+          "id": "subcostales",
+          "romanian_name": "Subcostalii",
+          "latin_name": "Musculi subcostales",
+          "location": "Internal surface of lower ribs, spanning 1-2 rib interspaces",
+          "primary_function": "Depress lower ribs during forced expiration",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimally activated",
+            "cycling_30min": "Mildly activated during heavy breathing",
+            "desk_job_only": "Minimal individual impact"
+          }
+        },
+        {
+          "id": "transversus_thoracis",
+          "romanian_name": "Transversul toracelui",
+          "latin_name": "Musculus transversus thoracis",
+          "location": "Inner surface of anterior chest wall, from sternum to costal cartilages 2-6",
+          "primary_function": "Depresses costal cartilages during forced expiration",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Minimally activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Minimal individual impact"
+          }
+        },
+        {
+          "id": "levatores_costarum",
+          "romanian_name": "Ridicatorii coastelor",
+          "latin_name": "Musculi levatores costarum",
+          "location": "12 pairs from transverse processes of C7-T11 to rib below",
+          "primary_function": "Elevate ribs during inspiration, assist thoracic lateral flexion and rotation",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.5,
+          "recovery_difficulty": "easy",
+          "activity_impact": {
+            "walking_30min": "Mildly activated during breathing and trunk rotation",
+            "cycling_30min": "Moderately activated from breathing demand",
+            "desk_job_only": "Can become restricted from thoracic immobility"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "Pelvic Floor Muscles",
+      "group_id": "pelvic_floor",
+      "region": "Pelvic diaphragm and perineal muscles",
+      "muscle_count": 8,
+      "muscles": [
+        {
+          "id": "pubococcygeus",
+          "romanian_name": "Pubococcigianul",
+          "latin_name": "Musculus pubococcygeus (part of levator ani)",
+          "location": "From pubic bone to coccyx, forming main part of pelvic floor sling",
+          "primary_function": "Supports pelvic organs, controls urination and defecation, core stabilization",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated with each step - rhythmic pelvic floor engagement",
+            "cycling_30min": "Variable - saddle can compress or inhibit activation",
+            "desk_job_only": "Weakens from prolonged sitting and poor posture - incontinence risk"
+          }
+        },
+        {
+          "id": "iliococcygeus",
+          "romanian_name": "Iliococcigianul",
+          "latin_name": "Musculus iliococcygeus (part of levator ani)",
+          "location": "From tendinous arch of levator ani to coccyx, forming lateral pelvic floor",
+          "primary_function": "Supports pelvic floor, assists in maintaining organ position",
+          "atrophy_rate": "moderate",
+          "strength_loss_per_week_inactivity": 1.5,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Moderately activated for pelvic stability",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Weakens from sustained pressure and poor posture"
+          }
+        },
+        {
+          "id": "puborectalis",
+          "romanian_name": "Puborectalul",
+          "latin_name": "Musculus puborectalis (part of levator ani)",
+          "location": "From pubic bone forming a U-shaped sling around the rectum",
+          "primary_function": "Maintains anorectal angle for fecal continence",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "hard",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Generally maintained but prolonged sitting alters pelvic floor dynamics"
+          }
+        },
+        {
+          "id": "coccygeus",
+          "romanian_name": "Coccigianul",
+          "latin_name": "Musculus coccygeus (ischiococcygeus)",
+          "location": "From ischial spine to coccyx and lower sacrum, posterior pelvic floor",
+          "primary_function": "Supports pelvic floor posteriorly, flexes coccyx",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated for pelvic support",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Compressed during sitting on hard surfaces"
+          }
+        },
+        {
+          "id": "external_anal_sphincter",
+          "romanian_name": "Sfincterul anal extern",
+          "latin_name": "Musculus sphincter ani externus",
+          "location": "Surrounds the anal canal, attaches to coccyx and perineal body",
+          "primary_function": "Voluntary control of defecation, maintains anal continence",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated with pelvic floor",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Generally maintained through constant tonic activity"
+          }
+        },
+        {
+          "id": "external_urethral_sphincter",
+          "romanian_name": "Sfincterul uretral extern",
+          "latin_name": "Musculus sphincter urethrae externus",
+          "location": "Surrounds the urethra within the pelvic floor",
+          "primary_function": "Voluntary control of urination",
+          "atrophy_rate": "very_slow",
+          "strength_loss_per_week_inactivity": 0.3,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Mildly activated",
+            "cycling_30min": "Mildly activated",
+            "desk_job_only": "Generally maintained but can weaken with overall pelvic floor dysfunction"
+          }
+        },
+        {
+          "id": "bulbospongiosus",
+          "romanian_name": "Bulbospongiosul",
+          "latin_name": "Musculus bulbospongiosus",
+          "location": "Perineum, surrounding bulb of penis (males) or vestibule (females)",
+          "primary_function": "Assists urination (expelling last drops), sexual function, supports pelvic floor",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimally directly activated",
+            "cycling_30min": "Can be compressed by saddle - potential dysfunction",
+            "desk_job_only": "Weakens gradually from overall pelvic floor disuse"
+          }
+        },
+        {
+          "id": "ischiocavernosus",
+          "romanian_name": "Ischiocavernosul",
+          "latin_name": "Musculus ischiocavernosus",
+          "location": "Perineum, from ischial tuberosity to crus of penis/clitoris",
+          "primary_function": "Maintains erection pressure, stabilizes perineum",
+          "atrophy_rate": "slow",
+          "strength_loss_per_week_inactivity": 0.8,
+          "recovery_difficulty": "moderate",
+          "activity_impact": {
+            "walking_30min": "Minimally directly activated",
+            "cycling_30min": "Can be compressed by saddle",
+            "desk_job_only": "Weakens gradually - contributes to pelvic floor dysfunction"
+          }
+        }
+      ]
+    }
+  ]
+}
