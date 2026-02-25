@@ -1,0 +1,5 @@
+*.png
+.DS_Store
+.playwright-mcp/
+.serena/
+node_modules/
