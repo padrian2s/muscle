@@ -8350,17 +8350,92 @@ const BODY_MAP_MUSCLES = {
     }
     .exercise-item {
       background: var(--bg-secondary, #12141c);
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 8px;
       font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+    .exercise-item:hover {
+      border-color: var(--glass-border, rgba(255,255,255,0.1));
+      background: rgba(30,33,50,0.9);
+    }
+    .exercise-item.expanded {
+      border-color: rgba(118,120,237,0.3);
+      background: rgba(30,33,50,0.95);
+    }
+    .exercise-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
     .exercise-item-name {
       font-weight: 600;
       margin-bottom: 2px;
     }
+    .exercise-item-toggle {
+      font-size: 0.7rem;
+      color: var(--text-muted, #6b7394);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .exercise-item.expanded .exercise-item-toggle {
+      transform: rotate(180deg);
+    }
     .exercise-item-detail {
       font-size: 0.75rem;
       color: var(--text-muted, #6b7394);
+    }
+    .exercise-item-desc {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text-secondary, #9ca3b8);
+    }
+    .exercise-item.expanded .exercise-item-desc {
+      max-height: 300px;
+      opacity: 1;
+      padding-top: 8px;
+      margin-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .exercise-difficulty {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .diff-usor { background: rgba(46,204,113,0.15); color: #2ecc71; }
+    .diff-mediu { background: rgba(241,196,15,0.15); color: #f1c40f; }
+    .diff-avansat { background: rgba(231,76,60,0.15); color: #e74c3c; }
+    .exercise-steps {
+      margin-top: 6px;
+      padding-left: 4px;
+    }
+    .exercise-steps li {
+      margin-bottom: 3px;
+      list-style: none;
+      position: relative;
+      padding-left: 16px;
+    }
+    .exercise-steps li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(118,120,237,0.5);
     }
 
     /* Timeline chart container */
@@ -9525,25 +9600,260 @@ function selectDuration(weeks) {
 }
 
 /**
+ * Exercise dictionary - descriptions in simple Romanian for non-medical people.
+ * Each entry: { desc, steps[], difficulty: 'usor'|'mediu'|'avansat', tip }
+ */
+const EXERCISE_DICT = {
+  'Chin Tucks': {
+    desc: 'Retragerea bărbiei spre gât, ca și cum ai vrea să-ți faci "gușă". Întărește mușchii profunzi ai gâtului și corectează postura capului împins în față (de la ecran).',
+    steps: ['Stai drept pe scaun, privește înainte', 'Trage bărbia spre gât, fără să apleci capul', 'Ține 5 secunde, simți un stretch ușor la ceafă', 'Relaxează și repetă'],
+    difficulty: 'usor',
+    tip: 'Poți face la birou, de câteva ori pe zi'
+  },
+  'Extensii cervicale': {
+    desc: 'Extensia controlată a capului spre spate. Întărește mușchii de la ceafă care susțin capul.',
+    steps: ['Stai drept, pune mâinile la ceafă', 'Împinge ușor capul înapoi contra rezistenței mâinilor', 'Ține 5-10 secunde', 'Relaxează și repetă'],
+    difficulty: 'usor',
+    tip: 'Folosește doar rezistență ușoară, nu forța'
+  },
+  'Stretching gât': {
+    desc: 'Întinderi blânde ale gâtului în toate direcțiile. Relaxează tensiunea acumulată de la statul la calculator.',
+    steps: ['Înclină urechea spre umăr, ține 20 sec pe fiecare parte', 'Rotește bărbia spre umăr, ține 20 sec', 'Înclină capul înainte, apasă ușor cu mâna', 'Nu forța niciodată mișcarea'],
+    difficulty: 'usor',
+    tip: 'Fă pauze de stretching la fiecare oră de birou'
+  },
+  'Ridicări laterale': {
+    desc: 'Ridici brațele în lateral cu greutăți mici (gantere sau sticle de apă). Lucrează deltoidul mijlociu - mușchiul care dă forma rotundă umărului.',
+    steps: ['Stai în picioare, greutăți în mâini, brațe pe lângă corp', 'Ridică brațele lateral până la nivelul umerilor', 'Palmele orientate în jos, coatele ușor flexate', 'Coboară lent (3 secunde)'],
+    difficulty: 'usor',
+    tip: 'Începe cu 1-2 kg, forma corectă contează mai mult decât greutatea'
+  },
+  'Face Pulls': {
+    desc: 'Tragi un cablu/bandă elastică spre față, cu coatele sus. Exercițiul #1 pentru sănătatea umerilor și postura corectă. Lucrează partea din spate a umerilor și trapezul.',
+    steps: ['Fixează o bandă elastică la nivelul feței', 'Apucă cu ambele mâini, palmele spre interior', 'Trage spre față, deschizând brațele ca o carte', 'Strânge omoplații, ține 2 sec, revino lent'],
+    difficulty: 'usor',
+    tip: 'Cel mai important exercițiu pentru oricine stă la birou!'
+  },
+  'Band Pull-Aparts': {
+    desc: 'Ții o bandă elastică în fața ta și o întinzi lateral, deschizând pieptul. Anulează efectul "umerilor căzuți" de la birou.',
+    steps: ['Ține banda elastică în fața pieptului, brațe drepte', 'Trage banda lateral, strângând omoplații', 'Deschide pieptul complet, ține 2 secunde', 'Revino controlat la poziția inițială'],
+    difficulty: 'usor',
+    tip: 'Poți face 20-30 rep ușoare chiar și în pauze de birou'
+  },
+  'Presă umeri': {
+    desc: 'Împingi greutăți deasupra capului din poziția umerilor. Exercițiu fundamental pentru forța și stabilitatea umerilor.',
+    steps: ['Stai pe scaun cu sprijin pentru spate, greutăți la umeri', 'Împinge greutățile vertical deasupra capului', 'Brațele complet extinse sus, fără a bloca coatele', 'Coboară lent la umeri și repetă'],
+    difficulty: 'mediu',
+    tip: 'Începe cu greutăți ușoare, menține spatele drept'
+  },
+  'Flexii biceps': {
+    desc: 'Clasicele "curls" - ridici greutatea din dreptul coapselor până la umăr, îndoind cotul. Lucrează bicepsul, mușchiul din fața brațului.',
+    steps: ['Stai drept, greutăți în mâini, brațe pe lângă corp', 'Îndoaie coatele, ridică greutățile spre umeri', 'Strânge bicepsul sus, ține o secundă', 'Coboară lent (nu lăsa să cadă)'],
+    difficulty: 'usor',
+    tip: 'Menține coatele lipite de corp'
+  },
+  'Extensii triceps': {
+    desc: 'Extinzi brațul din cotul îndoit. Lucrează tricepsul - mușchiul din spatele brațului (2/3 din volumul brațului!).',
+    steps: ['Ține o ganteră cu ambele mâini deasupra capului', 'Coboară greutatea în spatele capului, îndoind coatele', 'Extinde brațele înapoi sus, fără a mișca coatele', 'Controlează mișcarea în ambele direcții'],
+    difficulty: 'usor',
+    tip: 'Coatele rămân fixe, lângă urechi'
+  },
+  'Flexii încheietură': {
+    desc: 'Îndoirea încheieturii cu o ganteră ușoară. Întărește antebrațul și previne sindromul de tunel carpian de la mouse/tastatură.',
+    steps: ['Sprijină antebrațul pe genunchi, palma în sus', 'Cu o ganteră ușoară, ridică încheietura în sus', 'Ține o secundă sus, coboară lent', 'Fă și cu palma în jos (reverse curls)'],
+    difficulty: 'usor',
+    tip: 'Esențial pentru cei care lucrează mult la calculator'
+  },
+  'Flotări': {
+    desc: 'Exercițiul clasic cu greutatea corpului. Împingi corpul de pe podea. Lucrează pieptul, umerii și tricepsul simultan.',
+    steps: ['Mâinile pe podea, puțin mai late decât umerii', 'Corpul drept ca o scândură, de la cap la călcâie', 'Coboară pieptul spre podea, coatele la 45°', 'Împinge înapoi sus până la extensia brațelor'],
+    difficulty: 'mediu',
+    tip: 'Dacă e prea greu, începe cu genunchii pe podea'
+  },
+  'Presă piept': {
+    desc: 'Împingi greutățile de la piept în sus (pe bancă). Exercițiul principal pentru dezvoltarea pectoralilor.',
+    steps: ['Întins pe bancă, picioare pe podea', 'Greutăți deasupra pieptului, brațe extinse', 'Coboară lent spre piept (3 secunde)', 'Împinge sus cu putere, fără a bloca coatele'],
+    difficulty: 'mediu',
+    tip: 'Menține omoplații strânși și spatele ușor arcuit'
+  },
+  'Stretching pectoral': {
+    desc: 'Întinderea mușchilor pieptului care se scurtează de la statul aplecat la birou. Deschide pieptul și corectează postura.',
+    steps: ['Stai în cadrul ușii, brațul pe cadru la 90°', 'Pasul înainte cu piciorul de pe partea brațului', 'Simți întinderea în piept, ține 30 secunde', 'Repetă pe partea cealaltă'],
+    difficulty: 'usor',
+    tip: 'Fă zilnic - combate efectul umerilor rotunjiți'
+  },
+  'Tracțiuni': {
+    desc: 'Te tragi în sus pe o bară, ridici corpul cu forța brațelor și spatelui. Cel mai eficient exercițiu pentru spatele superior și bicepși.',
+    steps: ['Apucă bara cu palmele spre tine (chin-up) sau spre exterior (pull-up)', 'Atârnă cu brațele extinse', 'Trage-te sus până bărbia depășește bara', 'Coboară lent și controlat'],
+    difficulty: 'avansat',
+    tip: 'Dacă nu poți face una, folosește benzi elastice de asistență'
+  },
+  'Rowing': {
+    desc: 'Tragi o greutate spre abdomen din poziția aplecată. Exercițiu esențial pentru spatele mijlociu și postura corectă.',
+    steps: ['Aplecat la 45°, spatele drept, genunchii ușor flexați', 'Greutatea atârnă cu brațele extinse', 'Trage greutatea spre abdomen, strângând omoplații', 'Coboară lent, extinzând brațele complet'],
+    difficulty: 'mediu',
+    tip: 'Cel mai important exercițiu contra "spatelui rotund" de la birou'
+  },
+  'Superman': {
+    desc: 'Întins pe burtă, ridici simultan mâinile și picioarele de pe podea, ca Superman în zbor. Întărește toți mușchii spatelui.',
+    steps: ['Întins pe burtă, brațele extinse deasupra capului', 'Ridică simultan brațele și picioarele de pe podea', 'Strânge fesele și spatele, ține 3-5 secunde', 'Coboară lent și repetă'],
+    difficulty: 'usor',
+    tip: 'Excelent pentru dimineață, activează tot lanțul posterior'
+  },
+  'Bird Dog': {
+    desc: 'Din patru labe, extinzi simultan brațul opus cu piciorul opus. Antrenează stabilitatea coloanei și coordonarea.',
+    steps: ['Poziție de patru labe: mâini sub umeri, genunchi sub șolduri', 'Extinde brațul drept înainte și piciorul stâng înapoi', 'Menține trunchiul stabil, nu te răsuci', 'Ține 3-5 sec, schimbă partea'],
+    difficulty: 'usor',
+    tip: 'Imaginează-ți că ai un pahar de apă pe spate'
+  },
+  'Planșă': {
+    desc: 'Plank - ții corpul drept ca o scândură, sprijinit pe antebrațe și vârfuri de picioare. Cel mai eficient exercițiu pentru core (centrul corpului).',
+    steps: ['Antebrațele pe podea, coatele sub umeri', 'Corpul drept ca o scândură, de la cap la călcâie', 'Strânge abdomenul, nu lăsa șoldurile să cadă', 'Ține cât poți (pornește de la 20 sec)'],
+    difficulty: 'mediu',
+    tip: 'Nu ridica fundul în sus și nu lăsa spatele să se arcuiască'
+  },
+  'Dead Bug': {
+    desc: 'Întins pe spate, miști alternativ brațul opus cu piciorul opus, menținând spatele lipit de podea. Antrenează abdomenul profund fără presiune pe coloană.',
+    steps: ['Întins pe spate, brațele sus spre tavan, genunchii la 90°', 'Extinde brațul drept deasupra capului și piciorul stâng în jos', 'Spatele rămâne LIPIT de podea - asta e cheia!', 'Revino la centru, schimbă partea'],
+    difficulty: 'usor',
+    tip: 'Dacă spatele se arcuiește, nu coborî piciorul atât de mult'
+  },
+  'Bicycle Crunch': {
+    desc: 'Pedalezi în aer cu picioarele, atingând cotul opus de genunchiul opus. Lucrează abdomenul drept și oblicii simultan.',
+    steps: ['Întins pe spate, mâinile la ceafă, picioarele ridicate', 'Adu genunchiul drept spre piept, rotește trunchiul', 'Cotul stâng atinge genunchiul drept', 'Alternează fluid, ca și cum ai pedala'],
+    difficulty: 'mediu',
+    tip: 'Nu trage de gât! Forța vine din rotația trunchiului'
+  },
+  'Vacuum abdominal': {
+    desc: 'Tragi burta în interior cât de mult poți, activând mușchiul transvers abdominal (cel mai profund mușchi abdominal, ca o centură naturală).',
+    steps: ['Stai în picioare sau în patru labe', 'Expiră complet tot aerul din plămâni', 'Trage buricul spre coloană, ca și cum ai vrea să "intri în pantaloni"', 'Ține 10-15 secunde, respiră ușor, relaxează'],
+    difficulty: 'usor',
+    tip: 'Poți face oriunde, nimeni nu observă!'
+  },
+  'Glute Bridge': {
+    desc: 'Întins pe spate, ridici șoldurile de pe podea strângând fesele. Exercițiul de bază pentru activarea fesierilor "adormiți" de la stat pe scaun.',
+    steps: ['Întins pe spate, genunchii flexați, picioarele pe podea', 'Strânge fesele și ridică șoldurile spre tavan', 'Corpul face o linie dreaptă de la umeri la genunchi', 'Ține 3 secunde sus, coboară lent'],
+    difficulty: 'usor',
+    tip: 'Exercițiu #1 pentru fesieri dezactivați de la scaun'
+  },
+  'Hip Thrust': {
+    desc: 'Versiunea avansată a Glute Bridge - cu spatele sprijinit pe o bancă și greutate pe șolduri. Cel mai eficient exercițiu pentru fesierul mare.',
+    steps: ['Spatele superior sprijinit pe bancă, picioarele pe podea', 'Greutate (bară/ganteră) pe pliul șoldului', 'Ridică șoldurile sus, strângând fesele maxim', 'Coboară lent sub nivelul băncii și repetă'],
+    difficulty: 'mediu',
+    tip: 'Începe fără greutate, adaugă treptat'
+  },
+  'Clamshell': {
+    desc: 'Întins pe o parte cu genunchii flexați, deschizi genunchiul de sus ca o scoică. Activează fesierul mijlociu - crucial pentru stabilitatea șoldului.',
+    steps: ['Întins pe o parte, genunchii flexați la 45°, picioare lipite', 'Ridică genunchiul de sus fără a mișca pelvisul', 'Deschide ca o scoică, ține 2 secunde', 'Coboară lent, 15 rep pe fiecare parte'],
+    difficulty: 'usor',
+    tip: 'Pune o bandă elastică deasupra genunchilor pentru mai multă rezistență'
+  },
+  'Fandări': {
+    desc: 'Lunges - faci un pas mare înainte și cobori genunchiul din spate spre podea. Lucrează coapsele, fesele și echilibrul.',
+    steps: ['Stai drept, pas mare înainte cu un picior', 'Coboară corpul până genunchiul din spate aproape atinge podeaua', 'Genunchiul din față nu depășește vârful piciorului', 'Împinge înapoi la poziția inițială, schimbă piciorul'],
+    difficulty: 'mediu',
+    tip: 'Menține trunchiul drept, nu te apleca în față'
+  },
+  'Genuflexiuni': {
+    desc: 'Squats - exercițiul rege al picioarelor. Te așezi și te ridici de pe un scaun imaginar. Lucrează coapsele, fesele și core-ul.',
+    steps: ['Picioare la lățimea umerilor, vârfuri ușor spre exterior', 'Împinge șoldurile înapoi, ca și cum te-ai așeza pe scaun', 'Coboară până coapsele sunt paralele cu podeaua', 'Împinge prin călcâie pentru a te ridica'],
+    difficulty: 'mediu',
+    tip: 'Genunchii merg în direcția vârfurilor de picioare'
+  },
+  'Leg Press': {
+    desc: 'Împingi o platformă cu greutăți cu picioarele, stând pe un scaun înclinat. Versiunea sigură pentru coapse, fără încărcare pe coloană.',
+    steps: ['Stai pe scaunul aparatului, spatele bine sprijinit', 'Picioare pe platformă, la lățimea umerilor', 'Coboară platforma până genunchii fac 90°', 'Împinge sus fără a bloca genunchii complet'],
+    difficulty: 'mediu',
+    tip: 'Nu bloca niciodată genunchii complet la extensie!'
+  },
+  'Step-ups': {
+    desc: 'Urci pe o treaptă/bancă joasă cu un picior, apoi cobori. Simplu dar foarte eficient pentru coapse și fese.',
+    steps: ['Stai în fața unei trepte/bănci stabile', 'Pune un picior complet pe treaptă', 'Împinge prin călcâi și urcă, celălalt picior se ridică', 'Coboară controlat, repetă pe același picior, apoi schimbă'],
+    difficulty: 'usor',
+    tip: 'Poți folosi scările de la bloc!'
+  },
+  'Ridicări pe vârfuri': {
+    desc: 'Te ridici pe vârfurile picioarelor și cobori lent. Antrenează gambele (mușchii pușcă) - importanți pentru mers și circulație.',
+    steps: ['Stai pe marginea unei trepte, călcâiele în gol', 'Ridică-te pe vârfuri cât de sus poți', 'Ține 2 secunde, strânge gambele', 'Coboară lent sub nivelul treptei (stretch)'],
+    difficulty: 'usor',
+    tip: 'Fă seturi în timp ce aștepți la coadă sau gătești'
+  },
+  'Dorsiflexii': {
+    desc: 'Ridici vârful piciorului spre tibie (opus de a sta pe vârfuri). Întărește tibialul anterior - previne durerile de tibie la mers/alergare.',
+    steps: ['Stai pe scaun, picioarele pe podea', 'Ridică vârfurile picioarelor spre tine, călcâiele rămân pe podea', 'Ține 3 secunde, simți mușchiul de pe tibie', 'Coboară lent și repetă'],
+    difficulty: 'usor',
+    tip: 'Poți face sub birou în timp ce lucrezi'
+  },
+  'Mers pe vârfuri': {
+    desc: 'Mergi pe vârfurile picioarelor pe o distanță scurtă. Antrenează gambele și îmbunătățește echilibrul.',
+    steps: ['Ridică-te pe vârfuri', 'Mergi 20-30 de pași menținând poziția', 'Menține corpul drept, nu te apleca', 'Pauză, repetă de 3-4 ori'],
+    difficulty: 'usor',
+    tip: 'Variază: mergi pe călcâie, pe marginea exterioară'
+  },
+  'Toe curls': {
+    desc: 'Aduni un prosop de pe podea cu degetele de la picioare. Întărește musculatura intrinsecă a piciorului - bolta plantară.',
+    steps: ['Stai pe scaun, un prosop pe podea sub picior', 'Încreșpează degetele și trage prosopul spre tine', 'Eliberează, întinde degetele', 'Repetă 15-20 ori pe fiecare picior'],
+    difficulty: 'usor',
+    tip: 'Previne piciorul plat și dureri de fascie plantară'
+  },
+  'Mers desculț': {
+    desc: 'Mergi fără încălțăminte pe suprafețe variate (iarbă, nisip, covor). Activează toți mușchii mici ai piciorului care "dorm" în pantofi.',
+    steps: ['Scoate pantofii și șosetele', 'Mergi pe iarbă, nisip sau podea', 'Simte fiecare pas, rostogolește de la călcâi la degete', 'Minimum 10-15 minute pe zi'],
+    difficulty: 'usor',
+    tip: 'Începe treptat dacă nu ești obișnuit'
+  },
+  'Arch raises': {
+    desc: 'Ridici bolta plantară fără a curba degetele - "short foot exercise". Întărește arcul piciorului.',
+    steps: ['Stai în picioare, picioarele pe podea', 'Încearcă să ridici bolta plantară (arcul) spre sus', 'Degetele și călcâiul rămân pe podea', 'Ține 5 secunde, relaxează, repetă'],
+    difficulty: 'usor',
+    tip: 'Greu la început, dar foarte eficient pentru picioare sănătoase'
+  },
+  'Respirație diafragmatică': {
+    desc: 'Respirație profundă "din burtă" - aerul umflă abdomenul, nu pieptul. Activează diafragma, reduce stresul, îmbunătățește oxigenarea.',
+    steps: ['Întins pe spate sau stai confortabil', 'Pune o mână pe piept, una pe burtă', 'Inspiră pe nas 4 sec - doar burta se umflă', 'Expiră pe gură 6 sec - burta se dezumflă'],
+    difficulty: 'usor',
+    tip: 'Practică 5 minute dimineața - schimbă complet nivelul de energie'
+  },
+  'Respirație 4-7-8': {
+    desc: 'Tehnică de respirație relaxantă: inspiri 4 sec, ții 7 sec, expiri 8 sec. Activează sistemul nervos parasimpatic (calmează corpul).',
+    steps: ['Inspiră pe nas numărând până la 4', 'Ține respirația numărând până la 7', 'Expiră pe gură numărând până la 8', 'Repetă ciclul de 4 ori'],
+    difficulty: 'usor',
+    tip: 'Perfectă înainte de somn sau în momente de stres'
+  },
+  'Exerciții Kegel': {
+    desc: 'Contractarea mușchilor planșeului pelvian (cei cu care oprești urinarea). Previne incontinența și îmbunătățește susținerea organelor interne.',
+    steps: ['Identifică mușchii: oprește fluxul de urină (doar pentru a-i identifica!)', 'Contractă acei mușchi 5 secunde', 'Relaxează 5 secunde', 'Repetă 10-15 ori, de 3 ori pe zi'],
+    difficulty: 'usor',
+    tip: 'Nimeni nu observă când le faci - la birou, în mașină, oriunde'
+  },
+  'Bridge cu activare pelvis': {
+    desc: 'Glute bridge cu accent pe activarea planșeului pelvian. Combini ridicarea șoldurilor cu exercițiul Kegel.',
+    steps: ['Întins pe spate, genunchii flexați', 'Contractă planșeul pelvian (Kegel)', 'Ridică șoldurile menținând contracția', 'Ține 5 sec sus, coboară lent, relaxează'],
+    difficulty: 'usor',
+    tip: 'Combinația perfectă pentru core profund și planșeu pelvian'
+  }
+};
+
+/**
  * Render an exercise grid organized by muscle group.
- * Each group card shows recommended exercises with sets/reps.
+ * Each group card shows recommended exercises with sets/reps and descriptions.
  */
 function renderExerciseGrid() {
   const container = document.getElementById('exerciseGrid');
   if (!container || typeof MUSCLE_DB === 'undefined' || typeof MUSCLE_GROUPS === 'undefined') return;
 
-  // Default reps/sets recommendations
   const defaultRecs = [
     { sets: 3, reps: '10-12', freq: '3x/sapt.' },
     { sets: 3, reps: '8-10',  freq: '3x/sapt.' },
     { sets: 2, reps: '12-15', freq: '2-3x/sapt.' },
   ];
 
+  const diffLabels = { usor: 'Ușor', mediu: 'Mediu', avansat: 'Avansat' };
+
   const html = MUSCLE_GROUPS.map(group => {
     const muscles = MUSCLE_DB.filter(m => m.group === group.id);
     if (muscles.length === 0) return '';
 
-    // Collect unique exercises from all muscles in this group
     const exerciseSet = new Set();
     muscles.forEach(m => {
       if (m.exercises && Array.isArray(m.exercises)) {
@@ -9555,10 +9865,34 @@ function renderExerciseGrid() {
 
     const exerciseItems = exercises.slice(0, 8).map((ex, i) => {
       const rec = defaultRecs[i % defaultRecs.length];
+      const info = EXERCISE_DICT[ex];
+      const diffClass = info ? 'diff-' + info.difficulty : 'diff-usor';
+      const diffLabel = info ? diffLabels[info.difficulty] || info.difficulty : '';
+
+      let descHtml = '';
+      if (info) {
+        const stepsHtml = info.steps.map(s => `<li>${s}</li>`).join('');
+        descHtml = `
+          <div class="exercise-item-desc">
+            <div>${info.desc}</div>
+            <ul class="exercise-steps">${stepsHtml}</ul>
+            ${info.tip ? `<div style="margin-top:6px;font-size:0.72rem;color:#a78bfa;font-style:italic;">💡 ${info.tip}</div>` : ''}
+          </div>`;
+      }
+
       return `
-        <div class="exercise-item">
-          <div class="exercise-item-name">${ex}</div>
-          <div class="exercise-item-detail">${rec.sets} serii x ${rec.reps} rep. | ${rec.freq}</div>
+        <div class="exercise-item" onclick="this.classList.toggle('expanded')">
+          <div class="exercise-item-header">
+            <div>
+              <div class="exercise-item-name">${ex}</div>
+              <div class="exercise-item-detail">${rec.sets} serii x ${rec.reps} rep. | ${rec.freq}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              ${diffLabel ? `<span class="exercise-difficulty ${diffClass}">${diffLabel}</span>` : ''}
+              <span class="exercise-item-toggle">▼</span>
+            </div>
+          </div>
+          ${descHtml}
         </div>`;
     }).join('');
 
